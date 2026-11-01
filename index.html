@@ -88,14 +88,15 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            overflow: hidden;
         }
 
         /* Phone Screen Content */
         .phone-screen {
             background: var(--card-bg);
             flex: 1;
-            margin: 12px;
-            border-radius: 30px;
+            margin: 10px;
+            border-radius: 32px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -105,28 +106,51 @@
         /* Android Camera Punch-hole */
         .camera-notch {
             position: absolute;
-            top: 20px;
+            top: 18px;
             left: 50%;
             transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             background: #000;
             border-radius: 50%;
-            z-index: 10;
+            z-index: 20;
         }
 
-        /* Fallback placeholder style if images aren't uploaded yet */
-        .placeholder-screen {
+        /* Fake Mobile Status Bar */
+        .status-bar {
+            height: 36px;
+            background: #000;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            padding: 0 20px;
+            font-size: 0.7rem;
+            color: #fff;
+            font-weight: 600;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 6px;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+        }
+
+        /* Image Container */
+        .image-container {
+            flex: 1;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+        }
+
+        .image-container img {
+            width: 100%;
             height: 100%;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            padding: 20px;
-            text-align: center;
-            gap: 8px;
+            object-fit: cover;
+            object-position: top;
         }
 
         footer {
@@ -165,11 +189,12 @@
         <div class="phone-frame">
             <div class="camera-notch"></div>
             <div class="phone-screen">
-                <!-- Change 'screen1.png' to your actual uploaded image filename -->
-                <img src="screen1.png" alt="MiBubbl App Screen 1" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="placeholder-screen" style="display: none;">
-                    <span>📱 App Screen 1</span>
-                    <span style="font-size: 0.75rem;">Upload 'screen1.png' to GitHub</span>
+                <div class="status-bar">
+                    <span>9:41</span>
+                    <div class="status-icons">5G <b>99%</b></div>
+                </div>
+                <div class="image-container">
+                    <img src="screen1.png" alt="MiBubbl App Screen 1">
                 </div>
             </div>
         </div>
@@ -178,11 +203,12 @@
         <div class="phone-frame">
             <div class="camera-notch"></div>
             <div class="phone-screen">
-                <!-- Change 'screen2.png' to your actual uploaded image filename -->
-                <img src="screen2.png" alt="MiBubbl App Screen 2" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="placeholder-screen" style="display: none;">
-                    <span>📱 App Screen 2</span>
-                    <span style="font-size: 0.75rem;">Upload 'screen2.png' to GitHub</span>
+                <div class="status-bar">
+                    <span>9:41</span>
+                    <div class="status-icons">5G <b>99%</b></div>
+                </div>
+                <div class="image-container">
+                    <img src="screen2.png" alt="MiBubbl App Screen 2">
                 </div>
             </div>
         </div>
