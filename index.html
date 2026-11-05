@@ -156,19 +156,8 @@
         footer {
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
             font-size: 0.85rem;
-            margin-top: 0.25rem;
+            margin-top: 1rem;
         }
 
         footer a {
@@ -181,6 +170,11 @@
         footer a:hover {
             opacity: 0.8;
             text-decoration: underline;
+        }
+
+        .footer-divider {
+            margin: 0 0.5rem;
+            color: var(--border);
         }
 
         /* Modal Overlay Styles */
@@ -261,6 +255,7 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            text-align: left;
         }
 
         .modal-body h4 {
@@ -327,11 +322,13 @@
     </div>
 
     <footer>
-        <p>Launching soon. Get in touch: <a href="mailto:hello@mibubbl.com">hello@mibubbl.com</a></p>
-        <div class="footer-links">
-            <a onclick="openModal('terms')">Terms of Service</a>
+        <p>
+            Launching soon &bull; Contact: <a href="mailto:hello@mibubbl.com">hello@mibubbl.com</a> 
+            <span class="footer-divider">|</span> 
+            <a onclick="openModal('terms')">Terms of Service</a> 
+            <span class="footer-divider">|</span> 
             <a onclick="openModal('privacy')">Privacy Policy</a>
-        </div>
+        </p>
     </footer>
 
     <!-- Policy Modal Overlay -->
@@ -352,61 +349,28 @@
             terms: {
                 title: "Terms of Service",
                 content: `
-                    <p><strong>Last Updated:</strong> November 2026</p>
-                    <p>Welcome to MiBubbl. By accessing or using our platform, you agree to be bound by these Terms of Service.</p>
+                    <p><strong>Effective Date:</strong> November 1, 2026</p>
+                    <p>Welcome to <strong>MiBubbl</strong>. By accessing or using our website, web application, and services, you agree to be bound by these Terms of Service. Please read them carefully before creating an account or subscribing to Bubbl+.</p>
                     
-                    <h4>1. Accounts & Registration</h4>
-                    <p>You must provide accurate information when creating your account. You are responsible for maintaining the security of your credentials.</p>
+                    <h4>1. Account Eligibility & Age Requirement</h4>
+                    <p>• <strong>Strictly 18+:</strong> You must be at least 18 years of age to register an account, post content, or purchase subscriptions on MiBubbl.<br>• <strong>Account Security:</strong> You are responsible for safeguarding your login credentials and any activity under your account.</p>
                     
-                    <h4>2. Bubbl+ Subscriptions & Billing</h4>
-                    <p>Bubbl+ is billed at a flat rate of £7.99 per month through Stripe. Subscriptions automatically renew unless canceled prior to the billing period. You may cancel at any time from your account settings.</p>
+                    <h4>2. Intellectual Property & Creator Ownership</h4>
+                    <p>• <strong>Creator Rights:</strong> Creators retain 100% ownership of the copyright and IP rights to all content they post (Thoughts, Moments, Snippets, Vibes).<br>• <strong>Platform License:</strong> You grant MiBubbl a non-exclusive, worldwide license to host, display, and promote your content strictly to operate the platform.<br>• <strong>Absolute Protection Against AI Training:</strong> MiBubbl explicitly prohibits any use of user-generated content for training artificial intelligence, machine learning models, or generative AI systems.</p>
                     
-                    <h4>3. User Conduct & Content</h4>
-                    <p>You retain ownership of your content, but grant MiBubbl license to display it. You agree not to post offensive, abusive, or illegal content or malicious external links. We reserve the right to remove content and suspend accounts violating these terms.</p>
-                `
-            },
-            privacy: {
-                title: "Privacy Policy",
-                content: `
-                    <p><strong>Last Updated:</strong> November 2026</p>
-                    <p>At MiBubbl, we respect your privacy and protect your personal data.</p>
+                    <h4>3. Content Guidelines (The "Skin vs. Nudity" Policy)</h4>
+                    <p>• <strong>Strictly Prohibited:</strong> Explicit pornography, exposed genitalia, sexual acts, or illegal content.<br>• <strong>Allowed & Welcome:</strong> Swimwear, lingerie, artistic skin-bearing photography, fitness content, and fashion.<br>• <strong>Consequences:</strong> Violating content will be removed immediately; repeat violations lead to account termination.</p>
                     
-                    <h4>1. Information We Collect</h4>
-                    <p>We collect your email address, username, profile details, and user-generated content (moments, snippets, and links). Payment data is securely processed via Stripe; we do not store raw payment card details.</p>
+                    <h4>4. Code of Conduct & Anti-Harassment</h4>
+                    <p>• Heated debates and artistic expression are welcome.<br>• Targeted harassment, doxxing, stalking, hate speech, or malicious abuse are strictly prohibited and will result in immediate bans.</p>
                     
-                    <h4>2. How We Use Data</h4>
-                    <p>Your information is used to maintain your profile, manage Bubbl+ feature access, and enforce platform safety against abuse or malicious links.</p>
+                    <h4>5. External Links & Third-Party Content</h4>
+                    <p>• Permitted for official social media profiles, portfolios, and personal brands.<br>• Prohibited for illegal content, malware, phishing, explicit adult sites, or spam. MiBubbl assumes no liability for external third-party sites.</p>
                     
-                    <h4>3. Data Security</h4>
-                    <p>Your data is securely stored using Supabase with encrypted database policies. We never sell or trade your personal information.</p>
-                `
-            }
-        };
-
-        function openModal(type) {
-            const modal = document.getElementById('policyModal');
-            const title = document.getElementById('modalTitle');
-            const content = document.getElementById('modalContent');
-
-            title.innerText = policyData[type].title;
-            content.innerHTML = policyData[type].content;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('policyModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function handleOutsideClick(event) {
-            if (event.target.id === 'policyModal') {
-                closeModal();
-            }
-        }
-    </script>
-
-</body>
-</html>
+                    <h4>6. Copyright Infringement & DMCA Takedown Policy</h4>
+                    <p>If you believe content on MiBubbl infringes your copyright, submit a notification to our designated contact at support@mibubbl.com for prompt safe harbor removal.</p>
+                    
+                    <h4>7. Data Collection, Storage & Privacy</h4>
+                    <p>Account details and uploaded content are stored securely through cloud providers (Supabase) and payment processors (Stripe). Review our Privacy Policy for full details under UK data protection laws.</p>
+                    
+                    <h4>8. Bubbl+ Subscriptions, Billing & Cancellations</h4>
