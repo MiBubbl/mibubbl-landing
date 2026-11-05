@@ -325,9 +325,9 @@
         <p>
             Launching soon &bull; Contact: <a href="mailto:hello@mibubbl.com">hello@mibubbl.com</a> 
             <span class="footer-divider">|</span> 
-            <a onclick="openModal('terms')">Terms of Service</a> 
+            <a href="#" id="termsLink">Terms of Service</a> 
             <span class="footer-divider">|</span> 
-            <a onclick="openModal('privacy')">Privacy Policy</a>
+            <a href="#" id="privacyLink">Privacy Policy</a>
         </p>
     </footer>
 
@@ -374,3 +374,77 @@
                     <p>Account details and uploaded content are stored securely through cloud providers (Supabase) and payment processors (Stripe). Review our Privacy Policy for full details under UK data protection laws.</p>
                     
                     <h4>8. Bubbl+ Subscriptions, Billing & Cancellations</h4>
+                    <p>• <strong>Pricing:</strong> £7.99 GBP / $9.99 USD per month, auto-renewing via Stripe.<br>• <strong>Cancellations:</strong> Cancel anytime via the secure Stripe Customer Portal; benefits remain active until the billing period ends.<br>• <strong>Refunds:</strong> Non-refundable except where required by law. Fraudulent chargebacks result in immediate termination.</p>
+                    
+                    <h4>9. Suspension, Termination & Liability</h4>
+                    <p>MiBubbl reserves the right to suspend or terminate accounts immediately for terms violations. The platform is provided on an "as-is" basis with liability capped to the maximum extent permitted by law.</p>
+                    
+                    <h4>10. Governing Law</h4>
+                    <p>These Terms shall be governed by and construed in accordance with the laws of England and Wales, subject to the exclusive jurisdiction of its courts.</p>
+                `
+            },
+            privacy: {
+                title: "Privacy Policy",
+                content: `
+                    <p><strong>Effective Date:</strong> November 1, 2026</p>
+                    <p>At <strong>MiBubbl</strong>, we respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, and share your information.</p>
+                    
+                    <h4>1. Information We Collect</h4>
+                    <p>• <strong>Account Information:</strong> Email address, chosen username, and profile details.<br>• <strong>User-Generated Content:</strong> Thoughts, Moments, Snippets, Vibes, and profile images.<br>• <strong>Billing & Transaction Data:</strong> Processed securely via Stripe; we do not store full payment card numbers.<br>• <strong>Technical & Usage Data:</strong> IP address, browser type, device details, and interaction logs.</p>
+                    
+                    <h4>2. How We Use Your Information (Lawful Bases)</h4>
+                    <p>• <strong>Contractual Necessity:</strong> To operate feeds, manage profiles, display posts, and handle Stripe subscription billing.<br>• <strong>Legitimate Interests:</strong> To monitor activity, prevent fraud, and enforce Content Guidelines for platform safety.<br>• <strong>Legal Compliance:</strong> Retaining financial records as required by UK tax laws.</p>
+                    
+                    <h4>3. How We Store and Protect Your Data</h4>
+                    <p>• Stored via secure cloud infrastructure (Supabase) using AES-256 and TLS encryption.<br>• Retained while active; data is removed upon account deletion except for required financial/tax records (kept for up to 6 years).</p>
+                    
+                    <h4>4. Sharing of Information with Third Parties</h4>
+                    <p>We never sell or trade personal data. We share information only with Stripe (payments) and Supabase (cloud storage) under strict data processing agreements.</p>
+                    
+                    <h4>5. Your Rights Under UK Data Protection Law</h4>
+                    <p>Under UK GDPR, you have the right to access, rectify, erase, or restrict/object to your data processing. Contact us at support@mibubbl.com or via your account settings.</p>
+                    
+                    <h4>6. Children's Privacy</h4>
+                    <p>MiBubbl is strictly an 18+ platform. Underage accounts are terminated and deleted immediately upon discovery.</p>
+                    
+                    <h4>7. Changes & Contact</h4>
+                    <p>Updates are reflected via the Effective Date. For questions or concerns, contact us at hello@mibubbl.com.</p>
+                `
+            }
+        };
+
+        const modal = document.getElementById('policyModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+
+        document.getElementById('termsLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal('terms');
+        });
+
+        document.getElementById('privacyLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal('privacy');
+        });
+
+        function openModal(type) {
+            modalTitle.innerText = policyData[type].title;
+            modalContent.innerHTML = policyData[type].content;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleOutsideClick(event) {
+            if (event.target.id === 'policyModal') {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
