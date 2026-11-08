@@ -178,7 +178,7 @@
         /* Two-Column Feature Layout */
         .content-section {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 4rem;
             width: 100%;
             max-width: 1150px;
@@ -187,40 +187,31 @@
             text-align: left;
         }
 
-        /* Left Column: Phone Mockups */
+        /* Left Column: Clean Floating Phones (No background box) */
         .phone-column {
             flex: 1;
             display: flex;
-            gap: 1.5rem;
+            gap: 1.25rem;
             justify-content: center;
-            position: sticky;
-            top: 2rem;
         }
 
-        .showcase-card {
+        .phone-mockup {
             flex: 1;
-            max-width: 320px;
-            height: 560px;
-            border-radius: 20px;
+            max-width: 290px;
+            border-radius: 24px;
             overflow: hidden;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7),
-                        0 0 20px rgba(56, 189, 248, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .showcase-card:hover {
-            transform: translateY(-5px);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8),
-                        0 0 30px rgba(236, 72, 153, 0.2);
-            border-color: rgba(236, 72, 153, 0.3);
+                        0 0 30px rgba(56, 189, 248, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        .showcase-card img {
+        .phone-mockup:hover {
+            transform: translateY(-8px);
+        }
+
+        .phone-mockup img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             display: block;
         }
 
@@ -229,42 +220,68 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.75rem;
         }
 
         .feature-block h3 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
-        .feature-block h3 span {
-            color: var(--cyan);
+        /* Clean gradient accent dots instead of emojis */
+        .feature-block h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
         }
 
         .feature-block p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.6;
+            padding-left: 1.25rem;
         }
 
         .bubbl-plus-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 27, 75, 0.5) 100%);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.6) 100%);
             border: 1px solid rgba(236, 72, 153, 0.3);
             border-radius: 16px;
-            padding: 1.75rem;
+            padding: 1.5rem;
             box-shadow: 0 10px 30px -10px rgba(236, 72, 153, 0.15);
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
 
         .bubbl-plus-card h3 {
             color: var(--pink);
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .bubbl-plus-card h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+        }
+
+        .bubbl-plus-card p {
+            padding-left: 1.25rem;
             margin-bottom: 0.75rem;
         }
 
@@ -272,22 +289,22 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
-            margin-top: 0.75rem;
+            gap: 0.5rem;
+            padding-left: 1.25rem;
         }
 
         .bubbl-plus-card li {
             color: var(--text-muted);
-            font-size: 0.92rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1rem;
         }
 
         .bubbl-plus-card li::before {
-            content: "✨";
-            font-size: 0.85rem;
-            line-height: 1.4;
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--pink);
         }
 
         /* Footer */
@@ -326,17 +343,10 @@
                 align-items: center;
             }
             .phone-column {
-                position: static;
                 width: 100%;
             }
             .features-column {
-                text-align: center;
-            }
-            .feature-block h3 {
-                justify-content: center;
-            }
-            .bubbl-plus-card li {
-                justify-content: center;
+                text-align: left;
             }
         }
     </style>
@@ -364,20 +374,20 @@
                     placeholder="Enter your email address..." 
                     required
                 >
-                <button type="submit" id="submitBtn" class="waitlist-btn">Join Waitlist</button>
+                <button type="submit" id="submitBtn" class="waitlist-btn">Request Access</button>
             </form>
             <div id="feedback" class="waitlist-feedback"></div>
         </div>
 
-        <!-- Two-Column Layout: Phone Mockups Left, Features Right -->
+        <!-- Two-Column Layout: Floating Phones Left, Features Right -->
         <div class="content-section">
             
-            <!-- Left Column: Side-by-Side Vertical Mockups -->
+            <!-- Left Column: Clean Floating 3D Phone Mockups -->
             <div class="phone-column">
-                <div class="showcase-card">
+                <div class="phone-mockup">
                     <img src="screen1.jpeg" alt="MiBubbl Feed and Moments" loading="lazy">
                 </div>
-                <div class="showcase-card">
+                <div class="phone-mockup">
                     <img src="screen2.jpeg" alt="MiBubbl Creator Profile" loading="lazy">
                 </div>
             </div>
@@ -385,29 +395,29 @@
             <!-- Right Column: Core Ecosystem & Bubbl+ Features -->
             <div class="features-column">
                 <div class="feature-block">
-                    <h3><span>✍️</span> Thoughts</h3>
+                    <h3>Thoughts</h3>
                     <p>Express yourself freely via text, share unhurried micro-prose, and spark genuine conversations without character anxiety.</p>
                 </div>
 
                 <div class="feature-block">
-                    <h3><span>📸</span> Moments</h3>
+                    <h3>Moments</h3>
                     <p>A limited-capacity visual gallery designed to showcase your own bubble. Because slots are limited, it encourages mindful curation so you keep your feed fresh and engaging.</p>
                 </div>
 
                 <div class="feature-block">
-                    <h3><span>⚡</span> Snippets</h3>
+                    <h3>Snippets</h3>
                     <p>Quick, ephemeral updates shared throughout the day to keep your community tuned into what's happening right now.</p>
                 </div>
 
                 <div class="feature-block">
-                    <h3><span>⏳</span> Pure Chronological Feed</h3>
+                    <h3>Pure Chronological Feed</h3>
                     <p>Your feed flows naturally in order of time. No black-box algorithms burying your posts—just consistent updates that keep your community actively engaged.</p>
                 </div>
 
                 <!-- Bubbl+ Callout -->
                 <div class="bubbl-plus-card">
                     <h3>Unlock Bubbl+</h3>
-                    <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.5;">
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
                         Creators can upgrade to unlock an ad-free experience along with advanced publishing tools:
                     </p>
                     <ul>
