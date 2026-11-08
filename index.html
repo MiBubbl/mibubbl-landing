@@ -134,6 +134,7 @@
 
         .waitlist-input {
             flex: 1;
+            min-width: 0;
             background: transparent;
             border: none;
             outline: none;
@@ -460,6 +461,24 @@
                 text-align: left;
             }
         }
+
+        @media (max-width: 480px) {
+            .waitlist-form {
+                flex-direction: column;
+                border-radius: 20px;
+                padding: 8px;
+                gap: 8px;
+            }
+            .waitlist-input {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                text-align: center;
+            }
+            .waitlist-btn {
+                width: 100%;
+                padding: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -469,7 +488,7 @@
     </header>
 
     <main>
-        <div class="age-badge"> Strictly 18+: You must be at least 18 years of age to register an account</div>
+        <div class="age-badge">Strictly 18+: You must be at least 18 years of age to register an account</div>
         
         <h1>Your thoughts, your moments, <span>your bubble.</span></h1>
         
@@ -495,7 +514,7 @@
         <!-- Two-Column Layout: UI Screens Left, Features Right -->
         <div class="content-section">
             
-            <!-- Left Column: Clean Flat UI Mockup Screens -->
+            <!-- Left Column: Clean Flat UI Screen Frames -->
             <div class="phone-column">
                 <div class="phone-mockup">
                     <img src="screen3.jpg" alt="MiBubbl Feed and Moments" loading="lazy">
