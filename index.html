@@ -65,6 +65,20 @@
             padding: 2rem 1.5rem 5rem;
         }
 
+        .age-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.3rem 0.85rem;
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.25);
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--pink);
+            margin-bottom: 1.25rem;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.1);
+        }
+
         h1 {
             font-size: clamp(2.5rem, 5vw, 4.2rem);
             font-weight: 800;
@@ -309,6 +323,98 @@
             color: var(--pink);
         }
 
+        /* Modal Overlay Styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 650px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9),
+                        0 0 30px rgba(56, 189, 248, 0.15);
+            text-align: left;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.75rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--cyan);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-body {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-body h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            margin-top: 0.75rem;
+        }
+
+        .modal-body ul {
+            padding-left: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
         /* Footer */
         footer {
             width: 100%;
@@ -326,6 +432,8 @@
 
         .footer-links {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 1.5rem;
         }
 
@@ -333,6 +441,7 @@
             color: var(--text-muted);
             text-decoration: none;
             transition: color 0.2s ease;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -360,6 +469,8 @@
     </header>
 
     <main>
+        <div class="age-badge">🔞 18+ Verified Platform</div>
+        
         <h1>Your thoughts, your moments, <span>your bubble.</span></h1>
         
         <p class="subtitle">
@@ -398,7 +509,7 @@
             <div class="features-column">
                 <div class="feature-block">
                     <h3>Thoughts</h3>
-                    <p>Express yourself freely, share your thoughts, and spark genuine conversations without character anxiety.</p>
+                    <p>Express yourself freely, share thoughts, and spark genuine conversations without character anxiety.</p>
                 </div>
 
                 <div class="feature-block">
@@ -423,7 +534,7 @@
                         Upgrade to the Bubbl+ monthly subscription to unlock an ad-free experience along with advanced creator tools:
                     </p>
                     <ul>
-                        <li>Custom external link overlays on your moments and snippets.</li>
+                        <li>Custom external link overlays on your profile.</li>
                         <li>Expanded Moment slots from 20 up to 50.</li>
                         <li>Extended Snippet durations from 6 hours to 24 hours.</li>
                     </ul>
@@ -435,16 +546,204 @@
 
     <footer>
         <div class="footer-links">
-            <a href="#" id="tosLink">Terms of Service</a>
-            <a href="#" id="privacyLink">Privacy Policy</a>
+            <a id="featuresBtn">Feature Breakdown</a>
+            <a id="guidelinesBtn">App Guidelines</a>
+            <a id="tosBtn">Terms of Service</a>
+            <a id="privacyBtn">Privacy Policy</a>
         </div>
-        <p>&copy; 2026 MiBubbl Limited. All rights reserved.</p>
+        <p>&copy; 2026 MiBubbl Limited. 18+ Only. All rights reserved.</p>
     </footer>
 
-    <!-- Supabase JS Client -->
+    <!-- Modals -->
+    <!-- Feature Breakdown Modal -->
+    <div id="featuresModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" data-modal="featuresModal">&times;</button>
+            <h3 class="modal-title">Welcome to MiBubbl — Feature Breakdown</h3>
+            <div class="modal-body">
+                <p>MiBubbl is an intentional, adult (18+) social platform built for authentic expression, genuine connections, and creative freedom. We’ve stripped away the endless algorithmic noise, hidden view counts, and "black box" moderation to give you a clean, high-end space where you control your experience.</p>
+                
+                <h4>1. The Feed</h4>
+                <p>Your home base for everything happening in your bubble. Completely chronological—no mysterious algorithms pushing old content or burying what you want to see. The only way to appear at the top is to stay active and keep your bubbl fresh.</p>
+                
+                <h4>2. Thoughts</h4>
+                <p>Short-form, text-based updates—think quick notes, ideas, and real conversations with replies. Clean, distraction-free text formatting that lets you share what's on your mind instantly without needing a full production.</p>
+                
+                <h4>3. Moments</h4>
+                <p>Visual stories and portrait media designed to capture your lifestyle, fashion, and creative expression. To keep feeds active and prevent endless digital clutter, users have a base cap of 20 moments (or up to 50 with Bubbl+).</p>
+                
+                <h4>4. Snippets & The Avatar Ring</h4>
+                <p>Quick, real-time status updates that let your community know what you’re up to right now. When someone shares a snippet, their avatar lights up with our signature gradient ring in a clean rolling tray at the top of your feed.</p>
+                
+                <h4>5. Bubbl+ (The Pro Subscription)</h4>
+                <p>The optional monthly subscription tier built for creators and power users. Unlocks expanded limits—like up to 50 active moments instead of 20—alongside exclusive perks, custom badges, and advanced features.</p>
+                
+                <h4>6. An Adult, Intentional Space</h4>
+                <p>A mature (18+) community built on mutual respect and creative freedom. We encourage lively discussions and differing perspectives while leaving personal attacks and spam at the door.</p>
+                
+                <h4>7. Transparent Moderation (No Shadowbans)</h4>
+                <p>Complete peace of mind. We have zero tolerance for spam, harassment, or child safety violations. If an admin removes a post, you get a direct notification explaining why with a quick link to our guidelines. No secret shadowbans.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Guidelines Modal -->
+    <div id="guidelinesModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" data-modal="guidelinesModal">&times;</button>
+            <h3 class="modal-title">MiBubbl Community Guidelines</h3>
+            <div class="modal-body">
+                <p>MiBubbl is built as an intentional, adult (18+) space designed for authentic expression, genuine connections, and creative freedom. We believe adults should be trusted to curate their own feeds and express themselves without heavy-handed censorship.</p>
+                <p>However, freedom of expression works best when everyone respects basic boundaries. To keep MiBubbl safe, clean, and enjoyable, we maintain a few clear-cut lines on what stays and what goes.</p>
+                
+                <h4>1. What’s Welcome Here (The "Do's")</h4>
+                <p>We want MiBubbl to be a vibrant canvas for your creativity and daily life. You are free to share:</p>
+                <ul>
+                    <li><strong>Artistic & Creative Expression:</strong> Photography, styling, alternative fashion, and artistic body expression.</li>
+                    <li><strong>Lifestyle & Casual Content:</strong> Swimwear, bikinis, beachwear, fitness content, and everyday moments.</li>
+                    <li><strong>Open Conversation & Healthy Debate:</strong> Real thoughts, moments, snippets, and vibes. We actively encourage lively discussions and differing perspectives. Disagreeing and debating ideas is a natural part of a thriving, intelligent community.</li>
+                </ul>
+                <p>As long as it's consensual, legal, and authentic to you, you have the creative freedom to share it.</p>
+
+                <h4>2. The Hard Lines (The "Don'ts")</h4>
+                <p>While we love free expression and robust debate, certain things threaten the safety and integrity of the platform. The following content is strictly prohibited and will be removed:</p>
+                <ul>
+                    <li><strong>Personal Attacks & Bullying:</strong> While debating ideas is fully encouraged, discussions must never cross into personal abuse. There is a bright line between challenging a thought and attacking an individual. Targeted harassment, malicious name-calling, and persistent bullying have no place here.</li>
+                    <li><strong>Child Safety & Zero Tolerance:</strong> Because MiBubbl is an adult (18+) platform, the presence or exploitation of minors is strictly prohibited. Any content depicting, involving, or exploiting minors—including Child Sexual Abuse Material (CSAM) or any form of predatory grooming and contact—is an immediate, permanent zero-tolerance violation.</li>
+                    <li><strong>Explicit Pornography & Non-Consensual Media:</strong> While artistic expression and swimwear are fully welcome, unedited explicit pornographic media, graphic sexual content, and any non-consensual imagery are a hard no.</li>
+                    <li><strong>Spam & Automated Promotion:</strong> Flooding the public feed with automated scripts, bot-driven engagement, crypto/financial scam links, or relentless unsolicited self-promotion.</li>
+                    <li><strong>Copyright Infringement:</strong> Stealing and reuploading commercial media, paid intellectual property, or professional work that isn't yours without permission.</li>
+                </ul>
+
+                <h4>3. Our Transparency Commitment (No "Shadowbans")</h4>
+                <p>We hate the industry-standard "black box" moderation where platforms secretly hide or delete your content without explanation. If an administrator removes a post or moment, you will always receive a direct notification explaining exactly why (linked to the specific guideline violated). You'll never be left guessing.</p>
+
+                <h4>4. The Enforcement Path</h4>
+                <p>Our goal is never to trip people up, but to keep the platform healthy:</p>
+                <ul>
+                    <li><strong>First Step:</strong> Content removal with a clear reason notification and a direct link back to these guidelines.</li>
+                    <li><strong>Child Safety Violations:</strong> Accounts found sharing or engaging in child safety violations are permanently banned instantly with no warnings or second chances, and where legally required or appropriate, reported to relevant authorities.</li>
+                    <li><strong>Repeated Violations:</strong> Ignoring platform boundaries and repeatedly violating standard community guidelines will lead to temporary profile restrictions, followed by permanent account closure.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="tosModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" data-modal="tosModal">&times;</button>
+            <h3 class="modal-title">MiBubbl – Terms of Service</h3>
+            <div class="modal-body">
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Effective Date: November 1, 2026 | mibubbl.com</p>
+                <p>Welcome to MiBubbl. By accessing or using our website, web application, and services, you agree to be bound by these Terms of Service. Please read them carefully before creating an account or subscribing to Bubbl+.</p>
+
+                <h4>1. Account Eligibility & Age Requirement</h4>
+                <ul>
+                    <li><strong>Strictly 18+:</strong> You must be at least 18 years of age to register an account, post content, or purchase subscriptions on MiBubbl. By creating an account, you represent and warrant that you are at least 18 years old and legally capable of entering into a binding contract.</li>
+                    <li><strong>Account Security:</strong> You are responsible for safeguarding your login credentials. Any activity that occurs under your account is your sole responsibility.</li>
+                </ul>
+
+                <h4>2. Intellectual Property & Creator Ownership</h4>
+                <ul>
+                    <li><strong>Creator Rights:</strong> Creators retain 100% ownership of the copyright and intellectual property rights to all content they post on MiBubbl, including Thoughts, Moments, Snippets, and Vibes.</li>
+                    <li><strong>Limited Platform License:</strong> By posting content, you grant MiBubbl a non-exclusive, worldwide, royalty-free license to host, display, and stream your content strictly as necessary to operate, display, and promote the platform to your audience.</li>
+                    <li><strong>Absolute Protection Against AI Training:</strong> MiBubbl explicitly prohibits any use of user-generated content—by us, our partners, or unauthorized third parties—for the purpose of training artificial intelligence, machine learning models, neural networks, or generative AI systems. Your data, photos, and text will never be harvested or used to train AI bots.</li>
+                </ul>
+
+                <h4>3. Content Guidelines (The "Skin vs. Nudity" Policy)</h4>
+                <p>MiBubbl is built by adults, for adults, valuing open expression without overly restrictive automated filters. However, to maintain a safe and legal environment, our content standards are defined as follows:</p>
+                <ul>
+                    <li><strong>Strictly Prohibited:</strong> Explicit pornography, exposed genitalia, sexual acts, or illegal content of any kind.</li>
+                    <li><strong>Allowed & Welcome:</strong> Swimwear, lingerie, artistic skin-bearing photography, fitness content, and fashion. Context and artistic or aesthetic intent matter.</li>
+                    <li><strong>Violation Consequences:</strong> Content violating our nudity policy will be removed immediately, and repeat or severe violations will result in permanent account termination.</li>
+                </ul>
+
+                <h4>4. Code of Conduct & Anti-Harassment</h4>
+                <p>We champion freedom of expression, strong opinions, and robust personal freedom, but we draw a strict line against targeted harm:</p>
+                <ul>
+                    <li><strong>Protected Expression:</strong> Heated debates, edgy humor, diverse viewpoints, and artistic expression are fully welcome.</li>
+                    <li><strong>Prohibited Behavior:</strong> Targeted harassment, coordinated bullying, doxxing, stalking, hate speech, credible threats of violence, or malicious abuse directed at any user or creator.</li>
+                    <li><strong>Enforcement:</strong> We reserve the right to review content and behavior, and instantly suspend or ban accounts that breach this code of conduct.</li>
+                </ul>
+
+                <h4>5. External Links & Third-Party Content</h4>
+                <ul>
+                    <li><strong>Permitted Links:</strong> Creators are welcome to link to their official social media profiles, portfolios, and external web pages related to their personal brand or content.</li>
+                    <li><strong>Prohibited Links:</strong> You may not post links that direct users to illegal content, malware, phishing scams, explicit adult websites violating core guidelines, or spam.</li>
+                    <li><strong>No Endorsement or Liability:</strong> MiBubbl does not review, control, or endorse third-party websites or content linked by users. We assume zero responsibility or liability for any damage, loss, or issues caused by visiting external links.</li>
+                    <li><strong>Right to Remove:</strong> We reserve the right to remove any external link at our sole discretion and immediately suspend or terminate accounts that share prohibited links.</li>
+                </ul>
+
+                <h4>6. Copyright Infringement & DMCA Takedown Policy</h4>
+                <ul>
+                    <li><strong>Respecting Copyright:</strong> MiBubbl respects the intellectual property rights of others and expects our users to do the same.</li>
+                    <li><strong>Notice and Takedown:</strong> If you believe content infringes upon your copyright, submit a notification by emailing support@mibubbl.com with your physical/electronic signature, identification of the work, location on the platform, your contact info, and a good-faith statement.</li>
+                    <li><strong>Safe Harbor Compliance:</strong> Upon receipt of a valid notice, MiBubbl will act expeditiously to remove or disable access to the allegedly infringing content.</li>
+                </ul>
+
+                <h4>7. Data Collection, Storage & Privacy</h4>
+                <ul>
+                    <li><strong>Infrastructure & Storage:</strong> Account information, profile details, and uploaded content are stored and processed securely through cloud infrastructure providers (such as Supabase) and payment processors (such as Stripe).</li>
+                    <li><strong>Privacy Policy:</strong> For detailed information regarding what specific data we collect and your rights under UK data protection laws, please review our separate Privacy Policy.</li>
+                </ul>
+
+                <h4>8. Bubbl+ Subscriptions, Billing & Cancellations</h4>
+                <ul>
+                    <li><strong>Pricing & Auto-Renewal:</strong> Bubbl+ is a monthly recurring subscription billed automatically via Stripe at £7.99 GBP / $9.99 USD per month (plus applicable regional taxes). Renews automatically unless cancelled prior to renewal.</li>
+                    <li><strong>Cancellations & Customer Portal:</strong> Cancel anytime through your account settings via the secure Stripe Customer Portal. Benefits remain active until the end of the current paid billing period.</li>
+                    <li><strong>Refund Policy & Chargebacks:</strong> Digital subscription fees are non-refundable once billed except where required by law. Abusive chargebacks will result in immediate account termination.</li>
+                </ul>
+
+                <h4>9. Suspension, Termination, Liability & Governing Law</h4>
+                <p>We reserve the right to suspend or terminate accounts violating these terms. MiBubbl is provided on an "as-is" basis with liability capped to the maximum extent permitted by law. These Terms are governed by the laws of England and Wales.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" data-modal="privacyModal">&times;</button>
+            <h3 class="modal-title">MiBubbl – Privacy Policy</h3>
+            <div class="modal-body">
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Effective Date: November 1, 2026 | mibubbl.com</p>
+                <p>At MiBubbl, we respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, and share your information when you visit our website, use our web application, or subscribe to Bubbl+.</p>
+
+                <h4>1. Information We Collect</h4>
+                <ul>
+                    <li><strong>Account Information:</strong> When you register, we collect your email address, chosen username, and profile details.</li>
+                    <li><strong>User-Generated Content:</strong> Content you voluntarily upload or post, including Thoughts, Moments, Snippets, Vibes, and profile images.</li>
+                    <li><strong>Billing & Transaction Data:</strong> Payment details are collected and processed directly by our secure payment partner, Stripe. We do not store full payment card numbers on our servers.</li>
+                    <li><strong>Technical & Usage Data:</strong> Automatically collected information including IP address, browser type, device details, and interaction logs.</li>
+                </ul>
+
+                <h4>2. How We Use Your Information (Lawful Bases)</h4>
+                <p>Under UK data protection laws, we use your personal data for contractual necessity (running services, handling Stripe billing), ensuring platform safety under legitimate interests, and legal compliance.</p>
+
+                <h4>3. How We Store and Protect Your Data</h4>
+                <p>Stored securely using cloud database and infrastructure providers (such as Supabase) utilizing AES-256 and TLS encryption. Retained only while your account remains active, except where tax and commercial laws require financial record retention (up to 6 years).</p>
+
+                <h4>4. Sharing of Information with Third Parties</h4>
+                <p>We do not sell, rent, or trade your personal data. Shared only with trusted service providers bound by strict data processing agreements: Stripe (payment processing) and Supabase (cloud storage).</p>
+
+                <h4>5. Your Rights Under UK Data Protection Law</h4>
+                <p>Under UK GDPR, you have the right to access, rectify, erase, or restrict/object to your personal data. Manage your account via settings or contact us at support@mibubbl.com.</p>
+
+                <h4>6. Children's Privacy</h4>
+                <p>Strictly an 18+ platform. We do not knowingly collect personal data from anyone under 18; underage accounts are terminated and deleted immediately.</p>
+
+                <h4>7. Changes & Contact Us</h4>
+                <p>We may update this policy from time to time. For any questions or concerns, please contact us at: <strong>hello@mibubbl.com</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase JS Client & Modal Script -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Supabase Waitlist Logic ---
             const SUPABASE_URL = 'https://rnlnkgjwynhnfgsshtcx.supabase.co';
             const SUPABASE_ANON_KEY = 'sb_publishable_Ktboe_fpEnRZ56luzOWhtw_601FwPQX';
             
@@ -493,6 +792,40 @@
                     }
                 });
             }
+
+            // --- Modal Pop-up Logic ---
+            const openModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) modal.classList.add('active');
+            };
+
+            const closeModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) modal.classList.remove('active');
+            };
+
+            // Event Listeners for Footer Links
+            document.getElementById('featuresBtn').addEventListener('click', () => openModal('featuresModal'));
+            document.getElementById('guidelinesBtn').addEventListener('click', () => openModal('guidelinesModal'));
+            document.getElementById('tosBtn').addEventListener('click', () => openModal('tosModal'));
+            document.getElementById('privacyBtn').addEventListener('click', () => openModal('privacyModal'));
+
+            // Event Listeners for Close Buttons
+            document.querySelectorAll('.modal-close').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const modalId = e.target.getAttribute('data-modal');
+                    closeModal(modalId);
+                });
+            });
+
+            // Close modal when clicking outside content area
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            });
         });
     </script>
 </body>
