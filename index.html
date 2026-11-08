@@ -178,7 +178,7 @@
         /* Two-Column Feature Layout */
         .content-section {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 4rem;
             width: 100%;
             max-width: 1150px;
@@ -187,7 +187,7 @@
             text-align: left;
         }
 
-        /* Left Column: Clean Floating Phones (No background box) */
+        /* Left Column: Clean Flat UI Screen Frames */
         .phone-column {
             flex: 1;
             display: flex;
@@ -197,16 +197,19 @@
 
         .phone-mockup {
             flex: 1;
-            max-width: 290px;
-            border-radius: 24px;
+            max-width: 280px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8),
-                        0 0 30px rgba(56, 189, 248, 0.1);
-            transition: transform 0.3s ease;
+            background: #000000;
+            border: 2px solid rgba(56, 189, 248, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9),
+                        0 0 25px rgba(56, 189, 248, 0.15);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .phone-mockup:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
+            border-color: rgba(236, 72, 153, 0.4);
         }
 
         .phone-mockup img {
@@ -233,7 +236,6 @@
             gap: 0.75rem;
         }
 
-        /* Clean gradient accent dots instead of emojis */
         .feature-block h3::before {
             content: '';
             display: inline-block;
@@ -374,25 +376,25 @@
                     placeholder="Enter your email address..." 
                     required
                 >
-                <button type="submit" id="submitBtn" class="waitlist-btn">Request Access</button>
+                <button type="submit" id="submitBtn" class="waitlist-btn">Join Waitlist</button>
             </form>
             <div id="feedback" class="waitlist-feedback"></div>
         </div>
 
-        <!-- Two-Column Layout: Floating Phones Left, Features Right -->
+        <!-- Two-Column Layout: UI Screens Left, Features Right -->
         <div class="content-section">
             
-            <!-- Left Column: Clean Floating 3D Phone Mockups -->
+            <!-- Left Column: Clean Flat UI Mockup Screens -->
             <div class="phone-column">
                 <div class="phone-mockup">
-                    <img src="screen1.jpeg" alt="MiBubbl Feed and Moments" loading="lazy">
+                    <img src="screen1.png" alt="MiBubbl Feed and Moments" loading="lazy">
                 </div>
                 <div class="phone-mockup">
-                    <img src="screen2.jpeg" alt="MiBubbl Creator Profile" loading="lazy">
+                    <img src="screen2.png" alt="MiBubbl Creator Profile" loading="lazy">
                 </div>
             </div>
 
-            <!-- Right Column: Core Ecosystem & Bubbl+ Features -->
+            <!-- Right Column: Core Ecosystem & Bubbl+ Subscription -->
             <div class="features-column">
                 <div class="feature-block">
                     <h3>Thoughts</h3>
@@ -414,11 +416,11 @@
                     <p>Your feed flows naturally in order of time. No black-box algorithms burying your posts—just consistent updates that keep your community actively engaged.</p>
                 </div>
 
-                <!-- Bubbl+ Callout -->
+                <!-- Bubbl+ Subscription Callout -->
                 <div class="bubbl-plus-card">
-                    <h3>Unlock Bubbl+</h3>
+                    <h3>Unlock Bubbl+ Subscription</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
-                        Creators can upgrade to unlock an ad-free experience along with advanced publishing tools:
+                        Upgrade to the Bubbl+ monthly subscription to unlock an ad-free experience along with advanced creator tools:
                     </p>
                     <ul>
                         <li>Custom external link overlays on your profile.</li>
@@ -444,7 +446,7 @@
     <script>
         // Initialize Supabase
         const SUPABASE_URL = 'https://rnlnkgjwynhnfgsshtcx.supabase.co';
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE'; 
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJubG5rZ2p3eW5obmZnc3NodGN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk5NTA0NjIsImV4cCI6MjA0NTUyNjQ2Mn0.YOUR_ACTUAL_ANON_KEY_SEGMENT_HERE'; 
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         const form = document.getElementById('waitlistForm');
