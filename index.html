@@ -204,4 +204,296 @@
             border: 2px solid rgba(56, 189, 248, 0.25);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9),
                         0 0 25px rgba(56, 189, 248, 0.15);
-            transition
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .phone-mockup:hover {
+            transform: translateY(-6px);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .phone-mockup img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Right Column: Feature List */
+        .features-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .feature-block h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-block h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+
+        .feature-block p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            padding-left: 1.25rem;
+        }
+
+        .bubbl-plus-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.6) 100%);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px -10px rgba(236, 72, 153, 0.15);
+            margin-top: 0.5rem;
+        }
+
+        .bubbl-plus-card h3 {
+            color: var(--pink);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .bubbl-plus-card h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+        }
+
+        .bubbl-plus-card p {
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .bubbl-plus-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-left: 1.25rem;
+        }
+
+        .bubbl-plus-card li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .bubbl-plus-card li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--pink);
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: 5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--cyan);
+        }
+
+        @media (max-width: 968px) {
+            .content-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .phone-column {
+                width: 100%;
+            }
+            .features-column {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">MiBubbl</div>
+    </header>
+
+    <main>
+        <h1>Your thoughts, your moments, <span>your bubble.</span></h1>
+        
+        <p class="subtitle">
+            A space to express yourself and build genuine connections within your own bubble. Unfiltered thoughts, stunning moments, and a calmer place to share your world.
+        </p>
+
+        <!-- Waitlist Form -->
+        <div class="waitlist-wrapper">
+            <form id="waitlistForm" class="waitlist-form">
+                <input 
+                    type="email" 
+                    id="emailInput" 
+                    class="waitlist-input" 
+                    placeholder="Enter your email address..." 
+                    required
+                >
+                <button type="submit" id="submitBtn" class="waitlist-btn">Request Access</button>
+            </form>
+            <div id="feedback" class="waitlist-feedback"></div>
+        </div>
+
+        <!-- Two-Column Layout: UI Screens Left, Features Right -->
+        <div class="content-section">
+            
+            <!-- Left Column: Clean Flat UI Mockup Screens -->
+            <div class="phone-column">
+                <div class="phone-mockup">
+                    <img src="screen1.png" alt="MiBubbl Feed and Moments" loading="lazy">
+                </div>
+                <div class="phone-mockup">
+                    <img src="screen2.png" alt="MiBubbl Creator Profile" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Right Column: Core Ecosystem & Bubbl+ Subscription -->
+            <div class="features-column">
+                <div class="feature-block">
+                    <h3>Thoughts</h3>
+                    <p>Express yourself freely via text, share unhurried micro-prose, and spark genuine conversations without character anxiety.</p>
+                </div>
+
+                <div class="feature-block">
+                    <h3>Moments</h3>
+                    <p>A limited-capacity visual gallery designed to showcase your own bubble. Because slots are limited, it encourages mindful curation so you keep your feed fresh and engaging.</p>
+                </div>
+
+                <div class="feature-block">
+                    <h3>Snippets</h3>
+                    <p>Quick, ephemeral updates shared throughout the day to keep your community tuned into what's happening right now.</p>
+                </div>
+
+                <div class="feature-block">
+                    <h3>Pure Chronological Feed</h3>
+                    <p>Your feed flows naturally in order of time. No black-box algorithms burying your posts—just consistent updates that keep your community actively engaged.</p>
+                </div>
+
+                <!-- Bubbl+ Subscription Callout -->
+                <div class="bubbl-plus-card">
+                    <h3>Unlock Bubbl+ Subscription</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                        Upgrade to the Bubbl+ monthly subscription to unlock an ad-free experience along with advanced creator tools:
+                    </p>
+                    <ul>
+                        <li>Custom external link overlays on your profile.</li>
+                        <li>Expanded Moment slots from 20 up to 50.</li>
+                        <li>Extended Snippet durations from 6 hours to 24 hours.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" id="tosLink">Terms of Service</a>
+            <a href="#" id="privacyLink">Privacy Policy</a>
+        </div>
+        <p>&copy; 2026 MiBubbl Limited. All rights reserved.</p>
+    </footer>
+
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const SUPABASE_URL = 'https://rnlnkgjwynhnfgsshtcx.supabase.co';
+            const SUPABASE_ANON_KEY = 'sb_publishable_Ktboe_fpEnRZ56luzOWhtw_601FwPQX';
+            
+            let supabaseClient;
+            try {
+                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            } catch (err) {
+                console.error('Supabase init error:', err);
+            }
+
+            const form = document.getElementById('waitlistForm');
+            const emailInput = document.getElementById('emailInput');
+            const submitBtn = document.getElementById('submitBtn');
+            const feedback = document.getElementById('feedback');
+
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = emailInput.value.trim();
+                    if (!email) return;
+
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Joining...';
+                    feedback.textContent = '';
+                    feedback.className = 'waitlist-feedback';
+
+                    try {
+                        const { error } = await supabaseClient
+                            .from('waitlist')
+                            .insert([{ email: email }]);
+
+                        if (error) throw error;
+
+                        feedback.textContent = '🎉 You are on the list! We will be in touch soon.';
+                        feedback.classList.add('success');
+                        emailInput.value = '';
+                    } catch (err) {
+                        console.error('Waitlist error:', err);
+                        feedback.textContent = err.code === '23505' 
+                            ? '✨ This email is already registered on the waitlist.' 
+                            : 'Something went wrong. Please try again.';
+                        feedback.classList.add('error');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Request Access';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
