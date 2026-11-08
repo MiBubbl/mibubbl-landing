@@ -100,4 +100,379 @@
 
         .waitlist-form {
             display: flex;
-            width: 10
+            width: 100%;
+            position: relative;
+            background: linear-gradient(#0f172a, #0f172a) padding-box,
+                        linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%) border-box;
+            border: 1.5px solid transparent;
+            border-radius: 9999px;
+            padding: 5px 6px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6),
+                        0 0 18px rgba(236, 72, 153, 0.15);
+            transition: box-shadow 0.25s ease, transform 0.2s ease;
+        }
+
+        .waitlist-form:focus-within {
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.35),
+                        0 0 24px rgba(236, 72, 153, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .waitlist-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            padding: 0.65rem 1.15rem;
+            font-family: inherit;
+        }
+
+        .waitlist-input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.75;
+        }
+
+        .waitlist-btn {
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 9999px;
+            padding: 0.65rem 1.4rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
+        }
+
+        .waitlist-btn:hover {
+            opacity: 0.92;
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+
+        .waitlist-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .waitlist-feedback {
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+            min-height: 20px;
+            text-align: center;
+        }
+
+        .waitlist-feedback.success {
+            color: #34d399;
+        }
+
+        .waitlist-feedback.error {
+            color: #f87171;
+        }
+
+        /* Two-Column Feature Layout */
+        .content-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 4rem;
+            width: 100%;
+            max-width: 1150px;
+            margin: 2rem auto 0;
+            padding: 0 1rem;
+            text-align: left;
+        }
+
+        /* Left Column: Phone Mockups */
+        .phone-column {
+            flex: 1;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .showcase-card {
+            flex: 1;
+            max-width: 320px;
+            height: 560px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7),
+                        0 0 20px rgba(56, 189, 248, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8),
+                        0 0 30px rgba(236, 72, 153, 0.2);
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        .showcase-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Right Column: Feature List */
+        .features-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .feature-block h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-block h3 span {
+            color: var(--cyan);
+        }
+
+        .feature-block p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .bubbl-plus-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 27, 75, 0.5) 100%);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 16px;
+            padding: 1.75rem;
+            box-shadow: 0 10px 30px -10px rgba(236, 72, 153, 0.15);
+            margin-top: 1rem;
+        }
+
+        .bubbl-plus-card h3 {
+            color: var(--pink);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .bubbl-plus-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 0.75rem;
+        }
+
+        .bubbl-plus-card li {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .bubbl-plus-card li::before {
+            content: "✨";
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: 5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--cyan);
+        }
+
+        @media (max-width: 968px) {
+            .content-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .phone-column {
+                position: static;
+                width: 100%;
+            }
+            .features-column {
+                text-align: center;
+            }
+            .feature-block h3 {
+                justify-content: center;
+            }
+            .bubbl-plus-card li {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">MiBubbl</div>
+    </header>
+
+    <main>
+        <h1>Your thoughts, your moments, <span>your bubble.</span></h1>
+        
+        <p class="subtitle">
+            A space to express yourself and build genuine connections within your own bubble. Unfiltered thoughts, stunning moments, and a calmer place to share your world.
+        </p>
+
+        <!-- Waitlist Form -->
+        <div class="waitlist-wrapper">
+            <form id="waitlistForm" class="waitlist-form">
+                <input 
+                    type="email" 
+                    id="emailInput" 
+                    class="waitlist-input" 
+                    placeholder="Enter your email address..." 
+                    required
+                >
+                <button type="submit" id="submitBtn" class="waitlist-btn">Request Access</button>
+            </form>
+            <div id="feedback" class="waitlist-feedback"></div>
+        </div>
+
+        <!-- Two-Column Layout: Phone Mockups Left, Features Right -->
+        <div class="content-section">
+            
+            <!-- Left Column: Side-by-Side Vertical Mockups -->
+            <div class="phone-column">
+                <div class="showcase-card">
+                    <img src="screen1.png" alt="MiBubbl Feed and Moments" loading="lazy">
+                </div>
+                <div class="showcase-card">
+                    <img src="screen2.png" alt="MiBubbl Creator Profile" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Right Column: Core Ecosystem & Bubbl+ Features -->
+            <div class="features-column">
+                <div class="feature-block">
+                    <h3><span>✍️</span> Thoughts</h3>
+                    <p>Express yourself freely via text, share unhurried micro-prose, and spark genuine conversations without character anxiety.</p>
+                </div>
+
+                <div class="feature-block">
+                    <h3><span>📸</span> Moments</h3>
+                    <p>A limited-capacity visual gallery designed to showcase your own bubble. Because slots are limited, it encourages mindful curation so you keep your feed fresh and engaging.</p>
+                </div>
+
+                <div class="feature-block">
+                    <h3><span>⚡</span> Snippets</h3>
+                    <p>Quick, ephemeral updates shared throughout the day to keep your community tuned into what's happening right now.</p>
+                </div>
+
+                <div class="feature-block">
+                    <h3><span>⏳</span> Pure Chronological Feed</h3>
+                    <p>Your feed flows naturally in order of time. No black-box algorithms burying your posts—just consistent updates that keep your community actively engaged.</p>
+                </div>
+
+                <!-- Bubbl+ Callout -->
+                <div class="bubbl-plus-card">
+                    <h3>Unlock Bubbl+</h3>
+                    <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.5;">
+                        Creators can upgrade to unlock an ad-free experience along with advanced publishing tools:
+                    </p>
+                    <ul>
+                        <li>Custom external link overlays on your profile.</li>
+                        <li>Expanded Moment slots from 20 up to 50.</li>
+                        <li>Extended Snippet durations from 6 hours to 24 hours.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" id="tosLink">Terms of Service</a>
+            <a href="#" id="privacyLink">Privacy Policy</a>
+        </div>
+        <p>&copy; 2026 MiBubbl Limited. All rights reserved.</p>
+    </footer>
+
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Initialize Supabase
+        const SUPABASE_URL = 'https://rnlnkgjwynhnfgsshtcx.supabase.co';
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE'; 
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const form = document.getElementById('waitlistForm');
+        const emailInput = document.getElementById('emailInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const feedback = document.getElementById('feedback');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            feedback.textContent = '';
+            feedback.className = 'waitlist-feedback';
+
+            try {
+                const { error } = await supabaseClient
+                    .from('waitlist')
+                    .insert([{ email: email }]);
+
+                if (error) throw error;
+
+                feedback.textContent = '🎉 You are on the list! We will be in touch soon.';
+                feedback.classList.add('success');
+                emailInput.value = '';
+            } catch (err) {
+                console.error('Waitlist error:', err);
+                feedback.textContent = err.code === '23505' 
+                    ? '✨ This email is already registered on the waitlist.' 
+                    : 'Something went wrong. Please try again.';
+                feedback.classList.add('error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Request Access';
+            }
+        });
+    </script>
+</body>
+</html>
