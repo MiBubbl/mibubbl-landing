@@ -376,21 +376,21 @@
                     placeholder="Enter your email address..." 
                     required
                 >
-                <button type="submit" id="submitBtn" class="waitlist-btn">Join Waitlist</button>
+                <button type="submit" id="submitBtn" class="waitlist-btn">Request Access</button>
             </form>
             <div id="feedback" class="waitlist-feedback"></div>
         </div>
 
-        <!-- Two-Column Layout: UI s Left, Features Right -->
+        <!-- Two-Column Layout: UI Screens Left, Features Right -->
         <div class="content-section">
             
             <!-- Left Column: Clean Flat UI Mockup Screens -->
             <div class="phone-column">
                 <div class="phone-mockup">
-                    <img src="screen3.jpg" alt="MiBubbl Feed and Moments" loading="lazy">
+                    <img src="screen1.png" alt="MiBubbl Feed and Moments" loading="lazy">
                 </div>
                 <div class="phone-mockup">
-                    <img src="screen4.jpg" alt="MiBubbl Creator Profile" loading="lazy">
+                    <img src="screen2.png" alt="MiBubbl Creator Profile" loading="lazy">
                 </div>
             </div>
 
@@ -404,87 +404,3 @@
                 <div class="feature-block">
                     <h3>Moments</h3>
                     <p>A limited-capacity visual gallery designed to showcase your own bubble. Because slots are limited, it encourages mindful curation so you keep your feed fresh and engaging.</p>
-                </div>
-
-                <div class="feature-block">
-                    <h3>Snippets</h3>
-                    <p>Quick, ephemeral updates shared throughout the day to keep your community tuned into what's happening right now.</p>
-                </div>
-
-                <div class="feature-block">
-                    <h3>Pure Chronological Feed</h3>
-                    <p>Your feed flows naturally in order of time. No black-box algorithms burying your posts—just consistent updates that keep your community actively engaged.</p>
-                </div>
-
-                <!-- Bubbl+ Subscription Callout -->
-                <div class="bubbl-plus-card">
-                    <h3>Unlock Bubbl+ Subscription</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
-                        Upgrade to the Bubbl+ monthly subscription to unlock an ad-free experience along with advanced creator tools:
-                    </p>
-                    <ul>
-                        <li>Custom external link overlays on your profile.</li>
-                        <li>Expanded Moment slots from 20 up to 50.</li>
-                        <li>Extended Snippet durations from 6 hours to 24 hours.</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer-links">
-            <a href="#" id="tosLink">Terms of Service</a>
-            <a href="#" id="privacyLink">Privacy Policy</a>
-        </div>
-        <p>&copy; 2026 MiBubbl Limited. All rights reserved.</p>
-    </footer>
-
-    <!-- Supabase JS Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-        // Initialize Supabase
-        const SUPABASE_URL = 'https://rnlnkgjwynhnfgsshtcx.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJubG5rZ2p3eW5obmZnc3NodGN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk5NTA0NjIsImV4cCI6MjA0NTUyNjQ2Mn0.YOUR_ACTUAL_ANON_KEY_SEGMENT_HERE'; 
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        const form = document.getElementById('waitlistForm');
-        const emailInput = document.getElementById('emailInput');
-        const submitBtn = document.getElementById('submitBtn');
-        const feedback = document.getElementById('feedback');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = emailInput.value.trim();
-            if (!email) return;
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Joining...';
-            feedback.textContent = '';
-            feedback.className = 'waitlist-feedback';
-
-            try {
-                const { error } = await supabaseClient
-                    .from('waitlist')
-                    .insert([{ email: email }]);
-
-                if (error) throw error;
-
-                feedback.textContent = '🎉 You are on the list! We will be in touch soon.';
-                feedback.classList.add('success');
-                emailInput.value = '';
-            } catch (err) {
-                console.error('Waitlist error:', err);
-                feedback.textContent = err.code === '23505' 
-                    ? '✨ This email is already registered on the waitlist.' 
-                    : 'Something went wrong. Please try again.';
-                feedback.classList.add('error');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Request Access';
-            }
-        });
-    </script>
-</body>
-</html>
