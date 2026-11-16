@@ -223,20 +223,46 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Two-Column Layout Inside Panels */
-        .content-section {
-            display: flex;
-            align-items: flex-start;
-            gap: 4rem;
-            width: 100%;
+        /* Card Grid Layout (matching reference style) */
+        .grid-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             text-align: left;
         }
 
-        .phone-column {
-            flex: 1;
+        .card-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .card-box:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .card-box h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--cyan);
+        }
+
+        .card-box p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        /* Screenshots Tab Layout */
+        .screenshots-grid {
             display: flex;
-            gap: 1.25rem;
+            gap: 2rem;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .phone-mockup {
@@ -253,67 +279,6 @@
             width: 100%;
             height: auto;
             display: block;
-        }
-
-        .features-column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1.75rem;
-        }
-
-        .feature-block h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 0.35rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .feature-block h3::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%);
-        }
-
-        .feature-block p {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            line-height: 1.6;
-            padding-left: 1.25rem;
-        }
-
-        /* Design & Philosophy Grid Panels */
-        .grid-panel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            text-align: left;
-        }
-
-        .card-box {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 2rem;
-        }
-
-        .card-box h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--cyan);
-        }
-
-        .card-box p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
         }
 
         /* Bubbl+ Panel */
@@ -385,11 +350,6 @@
         }
 
         .footer-links a:hover { color: var(--cyan); }
-
-        @media (max-width: 968px) {
-            .content-section { flex-direction: column; align-items: center; }
-            .phone-column { width: 100%; }
-        }
     </style>
 </head>
 <body>
@@ -418,37 +378,32 @@
             <div id="feedback" class="waitlist-feedback"></div>
         </div>
 
-        <!-- Interactive Tabs Navigation -->
+        <!-- Interactive Tabs Navigation (No Icons) -->
         <div class="tabs-nav">
-            <button class="tab-btn active" data-target="features-tab">⚡ Core Features</button>
-            <button class="tab-btn" data-target="design-tab">🎨 Design & Philosophy</button>
-            <button class="tab-btn" data-target="bubblplus-tab">✨ Bubbl+ Perks</button>
+            <button class="tab-btn active" data-target="features-tab">Core Features</button>
+            <button class="tab-btn" data-target="design-tab">Design & Philosophy</button>
+            <button class="tab-btn" data-target="screenshots-tab">App Screenshots</button>
+            <button class="tab-btn" data-target="bubblplus-tab">Bubbl+ Perks</button>
         </div>
 
-        <!-- Tab 1: Features -->
+        <!-- Tab 1: Core Features (Card Grid Style) -->
         <div id="features-tab" class="tab-panel active">
-            <div class="content-section">
-                <div class="phone-column">
-                    <div class="phone-mockup"><img src="screen3.jpg" alt="Feed and Moments" loading="lazy"></div>
-                    <div class="phone-mockup"><img src="screen4.jpg" alt="Creator Profile" loading="lazy"></div>
+            <div class="grid-panel">
+                <div class="card-box">
+                    <h3>Thoughts</h3>
+                    <p>Express yourself freely, share text updates, and spark genuine conversations without character anxiety or suppression.</p>
                 </div>
-                <div class="features-column">
-                    <div class="feature-block">
-                        <h3>Thoughts</h3>
-                        <p>Express yourself freely, share thoughts, and spark genuine conversations without character anxiety.</p>
-                    </div>
-                    <div class="feature-block">
-                        <h3>Moments</h3>
-                        <p>A limited-capacity visual gallery designed to showcase your own bubble. Slots are capped to encourage mindful curation and keep feeds fresh.</p>
-                    </div>
-                    <div class="feature-block">
-                        <h3>Snippets</h3>
-                        <p>Quick updates shared throughout the day to keep your community tuned into what's happening right now.</p>
-                    </div>
-                    <div class="feature-block">
-                        <h3>Pure Chronological Feed</h3>
-                        <p>Flows naturally in order of time. No black-box algorithms burying your posts—just consistent updates that keep your community engaged.</p>
-                    </div>
+                <div class="card-box">
+                    <h3>Moments</h3>
+                    <p>A limited-capacity visual gallery designed to showcase your bubble. Slots are capped to encourage mindful curation and keep feeds fresh.</p>
+                </div>
+                <div class="card-box">
+                    <h3>Snippets</h3>
+                    <p>Quick status updates shared throughout the day to keep your community tuned into what's happening right now.</p>
+                </div>
+                <div class="card-box">
+                    <h3>Pure Chronological Feed</h3>
+                    <p>Flows naturally in order of time. No black-box algorithms burying your posts—just consistent updates that keep your community engaged.</p>
                 </div>
             </div>
         </div>
@@ -471,7 +426,15 @@
             </div>
         </div>
 
-        <!-- Tab 3: Bubbl+ Perks -->
+        <!-- Tab 3: App Screenshots -->
+        <div id="screenshots-tab" class="tab-panel">
+            <div class="screenshots-grid">
+                <div class="phone-mockup"><img src="screen3.jpg" alt="Feed and Moments" loading="lazy"></div>
+                <div class="phone-mockup"><img src="screen4.jpg" alt="Creator Profile" loading="lazy"></div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Bubbl+ Perks -->
         <div id="bubblplus-tab" class="tab-panel">
             <div class="bubbl-plus-card">
                 <h3>Unlock Bubbl+ Subscription</h3>
@@ -499,8 +462,6 @@
         </div>
         <p>&copy; 2026 MiBubbl Limited. 18+ Only. All rights reserved.</p>
     </footer>
-
-    <!-- Modals (Feature Breakdown, Guidelines, TOS, Privacy omitted for brevity, keep your modal markup here) -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
