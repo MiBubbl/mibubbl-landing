@@ -69,20 +69,6 @@
             padding: 2rem 1.5rem 5rem;
         }
 
-        .age-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.3rem 0.85rem;
-            background: rgba(236, 72, 153, 0.1);
-            border: 1px solid rgba(236, 72, 153, 0.25);
-            border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--pink);
-            margin-bottom: 1.25rem;
-            box-shadow: 0 0 15px rgba(236, 72, 153, 0.1);
-        }
-
         h1 {
             font-size: clamp(2.5rem, 5vw, 4.2rem);
             font-weight: 800;
@@ -172,6 +158,21 @@
 
         .waitlist-feedback.success { color: #34d399; }
         .waitlist-feedback.error { color: #f87171; }
+
+        /* Age Badge placed under waitlist pill */
+        .age-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 1rem;
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.25);
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--pink);
+            margin-top: 1rem;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.1);
+        }
 
         /* Tabs Navigation */
         .tabs-nav {
@@ -407,21 +408,22 @@
     </header>
 
     <main>
-        <div class="age-badge">Strictly 18+: You must be at least 18 years of age to register an account</div>
-        
         <h1>Stop fighting the algorithm.<br><span>Start building your bubble.</span></h1>
         
         <p class="subtitle">
             The 18+ social platform built for creators. Real chronological feeds, zero random shadowbans, unthrottled external links, and a space where your audience actually sees your work.
         </p>
 
-        <!-- Waitlist Form -->
+        <!-- Waitlist Form & 18+ Banner Container -->
         <div class="waitlist-wrapper">
             <form id="waitlistForm" class="waitlist-form">
                 <input type="email" id="emailInput" class="waitlist-input" placeholder="Enter your email address..." required>
                 <button type="submit" id="submitBtn" class="waitlist-btn">Join Waitlist</button>
             </form>
             <div id="feedback" class="waitlist-feedback"></div>
+            
+            <!-- 18+ Badge Moved Right Under Waitlist Pill -->
+            <div class="age-badge">Strictly 18+: You must be at least 18 years of age to register an account</div>
         </div>
 
         <!-- 2 Clean Tabs Navigation -->
