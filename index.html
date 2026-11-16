@@ -173,22 +173,21 @@
         .waitlist-feedback.success { color: #34d399; }
         .waitlist-feedback.error { color: #f87171; }
 
-        /* Tabs Navigation Styling */
+        /* Tabs Navigation */
         .tabs-nav {
             display: flex;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 1rem;
             margin-bottom: 2.5rem;
-            flex-wrap: wrap;
         }
 
         .tab-btn {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: var(--text-muted);
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 2rem;
             border-radius: 9999px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -223,10 +222,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Card Grid Layout (matching reference style) */
+        /* Creator-Focused Selling Grid */
         .grid-panel {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             text-align: left;
         }
@@ -245,7 +244,7 @@
         }
 
         .card-box h3 {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
             color: var(--cyan);
@@ -253,16 +252,42 @@
 
         .card-box p {
             color: var(--text-muted);
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        /* Screenshots Tab Layout */
-        .screenshots-grid {
+        .card-box.featured {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.6) 100%);
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        .card-box.featured h3 {
+            color: var(--pink);
+        }
+
+        /* Screenshots Tab Sub-Layout */
+        .screenshots-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .mobile-showcase {
             display: flex;
             gap: 2rem;
             justify-content: center;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .phone-mockup {
@@ -281,43 +306,64 @@
             display: block;
         }
 
-        /* Bubbl+ Panel */
-        .bubbl-plus-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.6) 100%);
-            border: 1px solid rgba(236, 72, 153, 0.3);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: left;
-            box-shadow: 0 10px 30px -10px rgba(236, 72, 153, 0.15);
-        }
-
-        .bubbl-plus-card h3 {
-            color: var(--pink);
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .bubbl-plus-card ul {
-            list-style: none;
+        /* Laptop Mockup Frame Style */
+        .laptop-showcase {
+            width: 100%;
+            max-width: 850px;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 1rem;
+            align-items: center;
         }
 
-        .bubbl-plus-card li {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            position: relative;
-            padding-left: 1.25rem;
+        .laptop-mockup {
+            width: 100%;
+            background: #1e293b;
+            border-radius: 14px 14px 0 0;
+            border: 2px solid rgba(56, 189, 248, 0.3);
+            overflow: hidden;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.9),
+                        0 0 25px rgba(56, 189, 248, 0.15);
         }
 
-        .bubbl-plus-card li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--pink);
+        .laptop-header {
+            background: #0f172a;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .laptop-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .laptop-screen {
+            width: 100%;
+            background: #000000;
+            max-height: 480px;
+            overflow-y: auto;
+        }
+
+        .laptop-screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .laptop-base {
+            width: 110%;
+            height: 14px;
+            background: linear-gradient(to bottom, #334155, #1e293b);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            margin-top: -2px;
         }
 
         /* Footer */
@@ -378,76 +424,75 @@
             <div id="feedback" class="waitlist-feedback"></div>
         </div>
 
-        <!-- Interactive Tabs Navigation (No Icons) -->
+        <!-- 2 Clean Tabs Navigation -->
         <div class="tabs-nav">
             <button class="tab-btn active" data-target="features-tab">Core Features</button>
-            <button class="tab-btn" data-target="design-tab">Design & Philosophy</button>
             <button class="tab-btn" data-target="screenshots-tab">App Screenshots</button>
-            <button class="tab-btn" data-target="bubblplus-tab">Bubbl+ Perks</button>
         </div>
 
-        <!-- Tab 1: Core Features (Card Grid Style) -->
+        <!-- Tab 1: Core Features -->
         <div id="features-tab" class="tab-panel active">
             <div class="grid-panel">
                 <div class="card-box">
-                    <h3>Thoughts</h3>
-                    <p>Express yourself freely, share text updates, and spark genuine conversations without character anxiety or suppression.</p>
-                </div>
-                <div class="card-box">
-                    <h3>Moments</h3>
-                    <p>A limited-capacity visual gallery designed to showcase your bubble. Slots are capped to encourage mindful curation and keep feeds fresh.</p>
-                </div>
-                <div class="card-box">
-                    <h3>Snippets</h3>
-                    <p>Quick status updates shared throughout the day to keep your community tuned into what's happening right now.</p>
-                </div>
-                <div class="card-box">
                     <h3>Pure Chronological Feed</h3>
-                    <p>Flows naturally in order of time. No black-box algorithms burying your posts—just consistent updates that keep your community engaged.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab 2: Design & Philosophy -->
-        <div id="design-tab" class="tab-panel">
-            <div class="grid-panel">
-                <div class="card-box">
-                    <h3>No Shadowbans or Black Boxes</h3>
-                    <p>We hate secret algorithm suppression. If a post ever needs moderation, you get a direct notification explaining why. Complete transparency.</p>
+                    <p>No black-box algorithms hiding your posts or forcing you to pay for reach. Your content flows naturally in time order so your followers actually see what you share.</p>
                 </div>
                 <div class="card-box">
                     <h3>Unthrottled External Links</h3>
-                    <p>Other platforms bury your posts if you link to your store. On MiBubbl, we want you to drive traffic and sales straight to your external sites.</p>
+                    <p>Drive traffic directly to your store, external sites, and drops. We want you to convert your audience without hidden reach penalties or link suppression.</p>
                 </div>
                 <div class="card-box">
-                    <h3>18+ Creator Safe Haven</h3>
-                    <p>SFW swimwear, glamour, and skin-positive content are fully welcome. Built to give independent creators total freedom without arbitrary censorship.</p>
+                    <h3>Thoughts & Text Freedom</h3>
+                    <p>Share quick updates, ideas, and spark genuine conversations with your community instantly—clean text formatting with zero character anxiety.</p>
+                </div>
+                <div class="card-box">
+                    <h3>Moments & Curation</h3>
+                    <p>A limited-capacity visual gallery designed to keep your profile dynamic. Capacity caps encourage fresh updates that push straight back out to timelines.</p>
+                </div>
+                <div class="card-box">
+                    <h3>Snippets & Status Rings</h3>
+                    <p>Keep your community tuned into what's happening right now with 24-hour status updates wrapped in our signature glowing gradient avatar rings.</p>
+                </div>
+                <div class="card-box featured">
+                    <h3>Bubbl+ & Midnight Spotlight</h3>
+                    <p>Upgrade for ad-free browsing, custom link pills, up to 50 moment slots, and automatic entry into our daily midnight draw where 6 creators are featured on Discover for 24h!</p>
                 </div>
             </div>
         </div>
 
-        <!-- Tab 3: App Screenshots -->
+        <!-- Tab 2: App Screenshots (Mobile & Laptop Sections) -->
         <div id="screenshots-tab" class="tab-panel">
-            <div class="screenshots-grid">
-                <div class="phone-mockup"><img src="screen3.jpg" alt="Feed and Moments" loading="lazy"></div>
-                <div class="phone-mockup"><img src="screen4.jpg" alt="Creator Profile" loading="lazy"></div>
-            </div>
-        </div>
+            <div class="screenshots-container">
+                
+                <!-- Mobile Section -->
+                <div style="width: 100%;">
+                    <div class="section-title">Mobile View</div>
+                    <div class="mobile-showcase">
+                        <div class="phone-mockup"><img src="screen3.jpg" alt="Feed and Moments Mobile View" loading="lazy"></div>
+                        <div class="phone-mockup"><img src="screen4.jpg" alt="Creator Profile Mobile View" loading="lazy"></div>
+                    </div>
+                </div>
 
-        <!-- Tab 4: Bubbl+ Perks -->
-        <div id="bubblplus-tab" class="tab-panel">
-            <div class="bubbl-plus-card">
-                <h3>Unlock Bubbl+ Subscription</h3>
-                <p style="color: var(--text-muted); line-height: 1.6;">
-                    Upgrade your creator workflow with our monthly subscription tier designed for power users and independent creators:
-                </p>
-                <ul>
-                    <li>Ad-free browsing for an uninterrupted scrolling experience.</li>
-                    <li>Custom external link overlays and gradient pills on your profile.</li>
-                    <li>Expanded Moment slots (up to 50 active slots instead of 20).</li>
-                    <li>Extended Snippet durations (up to 24 hours).</li>
-                    <li><strong>Daily Creator Spotlight Draw:</strong> Every midnight, 6 random Bubbl+ creators are highlighted on the Discover feed for 24 hours!</li>
-                </ul>
+                <!-- Desktop / Laptop Section -->
+                <div style="width: 100%; margin-top: 2rem;">
+                    <div class="section-title">Desktop View</div>
+                    <div style="display: flex; justify-content: center; width: 100%;">
+                        <div class="laptop-showcase">
+                            <div class="laptop-mockup">
+                                <div class="laptop-header">
+                                    <div class="laptop-dot dot-red"></div>
+                                    <div class="laptop-dot dot-yellow"></div>
+                                    <div class="laptop-dot dot-green"></div>
+                                </div>
+                                <div class="laptop-screen">
+                                    <img src="screen4.jpg" alt="MiBubbl Desktop View Mockup" loading="lazy">
+                                </div>
+                            </div>
+                            <div class="laptop-base"></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -466,7 +511,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Tabs Logic ---
+            // --- Tab Switching Logic ---
             const tabBtns = document.querySelectorAll('.tab-btn');
             const tabPanels = document.querySelectorAll('.tab-panel');
 
