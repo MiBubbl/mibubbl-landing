@@ -14,7 +14,7 @@
     <style>
         :root {
             --bg-main: #090D16;
-            --bg-card: #0f172a;
+            --bg-card: #0e1628;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --cyan: #38bdf8;
@@ -96,7 +96,7 @@
         .waitlist-wrapper {
             width: 100%;
             max-width: 460px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 3.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -159,7 +159,7 @@
         .waitlist-feedback.success { color: #34d399; }
         .waitlist-feedback.error { color: #f87171; }
 
-        /* Age Badge placed under waitlist pill */
+        /* Age Badge */
         .age-badge {
             display: inline-flex;
             align-items: center;
@@ -223,7 +223,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Creator-Focused Selling Grid */
+        /* Polished Card Grid Layout */
         .grid-panel {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -232,34 +232,66 @@
         }
 
         .card-box {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: border-color 0.2s ease, transform 0.2s ease;
+            background: linear-gradient(145deg, #0e1628 0%, #090e1a 100%);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 18px;
+            padding: 2.2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            transition: all 0.25s ease;
+        }
+
+        .card-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), transparent);
+            opacity: 0.5;
+            transition: opacity 0.25s ease;
         }
 
         .card-box:hover {
             border-color: rgba(56, 189, 248, 0.4);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px -10px rgba(56, 189, 248, 0.15);
+        }
+
+        .card-box:hover::before {
+            opacity: 1;
         }
 
         .card-box h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
             color: var(--cyan);
+            letter-spacing: -0.3px;
         }
 
         .card-box p {
             color: var(--text-muted);
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
+        /* Featured Card (Bubbl+ Perks) Style */
         .card-box.featured {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.6) 100%);
-            border-color: rgba(236, 72, 153, 0.3);
+            background: linear-gradient(145deg, rgba(20, 20, 45, 0.95) 0%, rgba(10, 14, 26, 0.95) 100%);
+            border-color: rgba(236, 72, 153, 0.35);
+        }
+
+        .card-box.featured::before {
+            background: linear-gradient(90deg, var(--pink), var(--cyan));
+            opacity: 1;
+        }
+
+        .card-box.featured:hover {
+            border-color: rgba(236, 72, 153, 0.7);
+            box-shadow: 0 15px 35px -10px rgba(236, 72, 153, 0.25);
         }
 
         .card-box.featured h3 {
@@ -422,7 +454,7 @@
             </form>
             <div id="feedback" class="waitlist-feedback"></div>
             
-            <!-- 18+ Badge Moved Right Under Waitlist Pill -->
+            <!-- 18+ Badge Under Waitlist Pill -->
             <div class="age-badge">Strictly 18+: You must be at least 18 years of age to register an account</div>
         </div>
 
@@ -456,7 +488,7 @@
                     <p>Keep your community tuned into what's happening right now with 24-hour status updates wrapped in our signature glowing gradient avatar rings.</p>
                 </div>
                 <div class="card-box featured">
-                    <h3>Bubbl+ & Midnight Spotlight</h3>
+                    <h3>Bubbl+ Perks</h3>
                     <p>Upgrade for ad-free browsing, custom link pills, up to 50 moment slots, and automatic entry into our daily midnight draw where 6 creators are featured on Discover for 24h!</p>
                 </div>
             </div>
@@ -470,8 +502,8 @@
                 <div style="width: 100%;">
                     <div class="section-title">Mobile View</div>
                     <div class="mobile-showcase">
-                        <div class="phone-mockup"><img src="mobile1.jpg" alt="Feed and Moments Mobile View" loading="lazy"></div>
-                        <div class="phone-mockup"><img src="mobile2.jpg" alt="Creator Profile Mobile View" loading="lazy"></div>
+                        <div class="phone-mockup"><img src="screen3.jpg" alt="Feed and Moments Mobile View" loading="lazy"></div>
+                        <div class="phone-mockup"><img src="screen4.jpg" alt="Creator Profile Mobile View" loading="lazy"></div>
                     </div>
                 </div>
 
@@ -487,7 +519,7 @@
                                     <div class="laptop-dot dot-green"></div>
                                 </div>
                                 <div class="laptop-screen">
-                                    <img src="laptop1.jpg" alt="MiBubbl Desktop View Mockup" loading="lazy">
+                                    <img src="screen4.jpg" alt="MiBubbl Desktop View Mockup" loading="lazy">
                                 </div>
                             </div>
                             <div class="laptop-base"></div>
