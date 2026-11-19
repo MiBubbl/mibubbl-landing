@@ -1,198 +1,788 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MiBubbl — Stop fighting the algorithm. Start building your bubble.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0a0a0c;
-      --surface: #121216;
-      --surface-elevated: #18181f;
-      --border: rgba(255, 255, 255, 0.1);
-      --text: #ffffff;
-      --text-muted: #a1a1aa;
-      --text-dim: #71717a;
-      --cyan: #38bdf8;
-      --purple: #a855f7;
-      --pink: #ec4899;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiBubbl — Stop fighting the algorithm. Start building your bubble.</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <style>
+        :root {
+            --bg-main: #090D16;
+            --bg-card: #0e1628;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --cyan: #38bdf8;
+            --purple: #a855f7;
+            --pink: #ec4899;
+        }
 
-    html, body {
-      min-height: 100%;
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .page-wrapper {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background:
-        radial-gradient(circle at 22% 35%, rgba(56, 189, 248, 0.11), transparent 42%),
-        radial-gradient(circle at 34% 62%, rgba(168, 85, 247, 0.12), transparent 45%),
-        var(--bg);
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at 20% 28%, rgba(56, 189, 248, 0.12), transparent 42%),
+                radial-gradient(circle at 32% 58%, rgba(168, 85, 247, 0.12), transparent 45%),
+                var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
 
-    /* Header */
-    .top-header {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 24px 24px 8px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      z-index: 20;
-    }
+        header {
+            width: 100%;
+            padding: 1.5rem 2rem 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1240px;
+        }
 
-    .brand-logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 800;
-      font-size: 1.35rem;
-      letter-spacing: -0.03em;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
 
-    .brand-orb {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.45), rgba(56, 189, 248, 0.25) 45%, rgba(168, 85, 247, 0.25) 100%);
-      border: 1.5px solid transparent;
-      background-clip: padding-box;
-      box-shadow:
-        0 0 0 1.5px rgba(56, 189, 248, 0.65),
-        0 0 18px rgba(168, 85, 247, 0.35);
-      position: relative;
-    }
+        .brand-logo {
+            height: 44px;
+            width: auto;
+            display: block;
+        }
 
-    /* Main Split Hero */
-    .hero-main {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 24px 24px 40px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 44px;
-      align-items: center;
-      position: relative;
-      z-index: 10;
-    }
+        main {
+            flex: 1;
+            width: 100%;
+            max-width: 1240px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem 1.5rem 2.5rem;
+        }
 
-    @media (min-width: 1024px) {
-      .hero-main {
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 64px;
-        padding: 28px 48px 36px;
-      }
-    }
+        /* Split Hero Section */
+        .split-hero {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
 
-    /* Left Column: Headline + Card Stack */
-    .left-showcase {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+        @media (min-width: 1024px) {
+            .split-hero {
+                grid-template-columns: 1.05fr 0.95fr;
+                gap: 3.5rem;
+                text-align: left;
+            }
+        }
 
-    .hero-headline {
-      font-size: clamp(2rem, 4vw, 3.25rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
-      color: var(--text);
-      margin-bottom: 36px;
-    }
+        .left-showcase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
-    .gradient-text {
-      display: block;
-      background: linear-gradient(90deg, #38bdf8 0%, #a855f7 55%, #ec4899 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+        h1 {
+            font-size: clamp(2.1rem, 4.2vw, 3.35rem);
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -1.2px;
+            max-width: 560px;
+            margin-bottom: 2rem;
+        }
 
-    .card-stack-stage {
-      position: relative;
-      width: 100%;
-      max-width: 440px;
-      height: 350px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        h1 span {
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 55%, var(--pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .moment-card {
-      position: absolute;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65);
-      background-size: cover;
-      background-position: center;
-    }
+        /* Pure HTML/CSS Fanned Card Stack */
+        .card-stack {
+            position: relative;
+            width: 100%;
+            max-width: 430px;
+            height: 330px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .moment-card.left-card {
-      width: 155px;
-      height: 245px;
-      left: 22px;
-      transform: rotate(-11deg) translateY(10px);
-      z-index: 5;
-      opacity: 0.88;
-      background-image: linear-gradient(135deg, rgba(251, 146, 60, 0.25), rgba(168, 85, 247, 0.3)),
-        url('./images/moment-left.jpg');
-      background-color: #1e1b2e;
-    }
+        .stack-card {
+            position: absolute;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.7);
+            background-size: cover;
+            background-position: center;
+        }
 
-    .moment-card.right-card {
-      width: 155px;
-      height: 245px;
-      right: 22px;
-      transform: rotate(11deg) translateY(12px);
-      z-index: 5;
-      opacity: 0.88;
-      background-image: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(236, 72, 153, 0.25)),
-        url('./images/moment-right.jpg');
-      background-color: #17202a;
-    }
+        .stack-card.left {
+            width: 150px;
+            height: 235px;
+            left: 18px;
+            transform: rotate(-11deg) translateY(8px);
+            z-index: 4;
+            opacity: 0.88;
+            background-image: url('mobile1.jpg');
+            background-color: #131c31;
+        }
 
-    .moment-card.center-card {
-      width: 215px;
-      height: 325px;
-      z-index: 10;
-      background-image: url('./images/moment-center.jpg');
-      background-color: #201a2c;
-    }
+        .stack-card.right {
+            width: 150px;
+            height: 235px;
+            right: 18px;
+            transform: rotate(11deg) translateY(10px);
+            z-index: 4;
+            opacity: 0.88;
+            background-image: url('mobile2.jpg');
+            background-color: #131c31;
+        }
 
-    .moment-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.1) 45%, transparent 100%);
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 14px 16px;
-    }
+        .stack-card.center {
+            width: 210px;
+            height: 315px;
+            z-index: 8;
+            background-image: url('screen4.jpg');
+            background-color: #131c31;
+        }
 
-    .moment-handle {
+        .stack-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(9, 13, 22, 0.86) 0%, rgba(9, 13, 22, 0.08) 45%, transparent 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 12px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .float-pill {
+            position: absolute;
+            z-index: 15;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 9999px;
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5);
+            font-size: 0.76rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .pill-thoughts { top: 14px; left: 6px; color: #c084fc; }
+        .pill-moments  { top: 24px; right: 6px; color: #7dd3fc; }
+        .pill-snippets { bottom: 22px; left: 8px; color: #f472b6; }
+        .pill-plus     { bottom: 12px; right: 14px; color: #ffffff; border-color: rgba(236, 72, 153, 0.45); }
+
+        .plus-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--cyan), var(--pink));
+            color: #ffffff;
+        }
+
+        /* Right Column: Core Features + Waitlist + 18+ Badge */
+        .right-panel {
+            width: 100%;
+            max-width: 540px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.35rem;
+        }
+
+        .feature-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            text-align: left;
+        }
+
+        .feature-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.9rem;
+            padding: 0.78rem 1rem;
+            border-radius: 14px;
+            background: rgba(14, 22, 40, 0.78);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            transition: border-color 0.2s ease;
+        }
+
+        .feature-row:hover {
+            border-color: rgba(56, 189, 248, 0.35);
+        }
+
+        .feature-row.featured-row {
+            background: linear-gradient(145deg, rgba(24, 22, 52, 0.92) 0%, rgba(12, 17, 34, 0.95) 100%);
+            border-color: rgba(236, 72, 153, 0.35);
+        }
+
+        .feature-badge {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(236, 72, 153, 0.18));
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            color: var(--cyan);
+        }
+
+        .feature-row.featured-row .feature-badge {
+            color: var(--pink);
+        }
+
+        .feature-row-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .feature-row-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* Waitlist Form Styling */
+        .waitlist-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .waitlist-form {
+            display: flex;
+            width: 100%;
+            position: relative;
+            background: linear-gradient(#0f172a, #0f172a) padding-box,
+                        linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%) border-box;
+            border: 1.5px solid transparent;
+            border-radius: 9999px;
+            padding: 5px 6px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6),
+                        0 0 18px rgba(236, 72, 153, 0.15);
+        }
+
+        .waitlist-input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            padding: 0.65rem 1.15rem;
+            font-family: inherit;
+        }
+
+        .waitlist-input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.75;
+        }
+
+        .waitlist-btn {
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 9999px;
+            padding: 0.65rem 1.4rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+            white-space: nowrap;
+        }
+
+        .waitlist-btn:hover {
+            opacity: 0.92;
+            transform: scale(1.02);
+        }
+
+        .waitlist-feedback {
+            font-size: 0.85rem;
+            margin-top: 0.65rem;
+            min-height: 20px;
+            text-align: center;
+        }
+
+        .waitlist-feedback.success { color: #34d399; }
+        .waitlist-feedback.error { color: #f87171; }
+
+        /* Age Badge */
+        .age-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.4rem 1rem;
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.25);
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--pink);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.1);
+            align-self: center;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover { color: var(--cyan); }
+
+        /* Blurred Modal */
+        .legal-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .legal-modal-backdrop.open {
+            display: flex;
+        }
+
+        .legal-modal-box {
+            width: 100%;
+            max-width: 680px;
+            max-height: 82vh;
+            border-radius: 20px;
+            background: rgba(14, 22, 40, 0.97);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .legal-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .legal-modal-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--cyan), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .legal-modal-close {
+            width: 34px;
+            height: 34px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-main);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .legal-modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .legal-modal-body h3 {
+            color: var(--text-main);
+            font-size: 1rem;
+            margin: 1.1rem 0 0.4rem;
+        }
+
+        .legal-modal-body h3:first-child { margin-top: 0; }
+        .legal-modal-body p { margin-bottom: 0.75rem; }
+        .legal-modal-body ul { margin: 0.35rem 0 1rem 1.25rem; }
+        .legal-modal-body li { margin-bottom: 0.4rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="MBlogo.svg" alt="MiBubbl" class="brand-logo">
+        </div>
+    </header>
+
+    <main>
+        <section class="split-hero">
+            <!-- Left Column: Headline + Card Stack -->
+            <div class="left-showcase">
+                <h1>Stop fighting the algorithm.<br><span>Start building your bubble.</span></h1>
+
+                <div class="card-stack">
+                    <div class="stack-card left" aria-hidden="true"></div>
+
+                    <div class="stack-card center">
+                        <div class="stack-overlay">
+                            <span>@itsjakeirl</span>
+                            <span aria-hidden="true">♡</span>
+                        </div>
+                    </div>
+
+                    <div class="stack-card right" aria-hidden="true"></div>
+
+                    <div class="float-pill pill-thoughts">
+                        <span>✦</span>
+                        <span>#thoughts</span>
+                    </div>
+
+                    <div class="float-pill pill-moments">
+                        <span>◈</span>
+                        <span>#moments</span>
+                    </div>
+
+                    <div class="float-pill pill-snippets">
+                        <span>▶</span>
+                        <span>#snippets</span>
+                    </div>
+
+                    <div class="float-pill pill-plus">
+                        <span class="plus-dot">+</span>
+                        <span>Bubbl+</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Core Features + Waitlist + 18+ Badge -->
+            <div class="right-panel">
+                <div class="feature-rows">
+                    <div class="feature-row">
+                        <div class="feature-badge">⏱</div>
+                        <div>
+                            <div class="feature-row-title">Pure Chronological Feed</div>
+                            <div class="feature-row-desc">No black-box algorithms hiding posts or forcing paid reach—your updates flow naturally in time order.</div>
+                        </div>
+                    </div>
+
+                    <div class="feature-row">
+                        <div class="feature-badge">↗</div>
+                        <div>
+                            <div class="feature-row-title">Unthrottled External Links</div>
+                            <div class="feature-row-desc">Drive traffic directly to your store, external sites, and drops without hidden reach penalties.</div>
+                        </div>
+                    </div>
+
+                    <div class="feature-row">
+                        <div class="feature-badge">✦</div>
+                        <div>
+                            <div class="feature-row-title">Thoughts &amp; Moments</div>
+                            <div class="feature-row-desc">Distraction-free text updates paired with curated visual slots that push fresh posts back to the top.</div>
+                        </div>
+                    </div>
+
+                    <div class="feature-row">
+                        <div class="feature-badge">◎</div>
+                        <div>
+                            <div class="feature-row-title">Snippets &amp; Status Rings</div>
+                            <div class="feature-row-desc">24-hour live status updates wrapped in our signature glowing gradient avatar rings.</div>
+                        </div>
+                    </div>
+
+                    <div class="feature-row featured-row">
+                        <div class="feature-badge">+</div>
+                        <div>
+                            <div class="feature-row-title">Bubbl+ Perks</div>
+                            <div class="feature-row-desc">Ad-free browsing, custom link pills, up to 50 Moment slots, and daily entry into our 24h Discover spotlight draw.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Waitlist Form -->
+                <div class="waitlist-wrapper">
+                    <form id="waitlistForm" class="waitlist-form">
+                        <input type="email" id="emailInput" class="waitlist-input" placeholder="Enter your email address..." required>
+                        <button type="submit" id="submitBtn" class="waitlist-btn">Join Waitlist</button>
+                    </form>
+                    <div id="feedback" class="waitlist-feedback"></div>
+                </div>
+
+                <!-- 18+ Badge Under Waitlist Pill -->
+                <div class="age-badge">Strictly 18+: You must be at least 18 years of age to register an account</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a id="featuresBtn" role="button" tabindex="0">Feature Breakdown</a>
+            <a id="guidelinesBtn" role="button" tabindex="0">App Guidelines</a>
+            <a id="tosBtn" role="button" tabindex="0">Terms of Service</a>
+            <a id="privacyBtn" role="button" tabindex="0">Privacy Policy</a>
+        </div>
+        <p>&copy; 2026 MiBubbl Limited. 18+ Only. All rights reserved.</p>
+    </footer>
+
+    <!-- Blurred Legal / Info Modal -->
+    <div id="legalModal" class="legal-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle">
+        <div class="legal-modal-box">
+            <div class="legal-modal-header">
+                <h2 id="legalModalTitle" class="legal-modal-title"></h2>
+                <button id="legalModalClose" type="button" class="legal-modal-close" aria-label="Close">×</button>
+            </div>
+            <div id="legalModalBody" class="legal-modal-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Supabase Waitlist Logic (Preserved) ---
+            const SUPABASE_URL = 'https://rnlnkgjwynhnfgsshtcx.supabase.co';
+            const SUPABASE_ANON_KEY = 'sb_publishable_Ktboe_fpEnRZ56luzOWhtw_601FwPQX';
+
+            let supabaseClient;
+            try {
+                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            } catch (err) {
+                console.error('Supabase init error:', err);
+            }
+
+            const form = document.getElementById('waitlistForm');
+            const emailInput = document.getElementById('emailInput');
+            const submitBtn = document.getElementById('submitBtn');
+            const feedback = document.getElementById('feedback');
+
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = emailInput.value.trim();
+                    if (!email) return;
+
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Joining...';
+                    feedback.textContent = '';
+                    feedback.className = 'waitlist-feedback';
+
+                    try {
+                        const { error } = await supabaseClient
+                            .from('waitlist')
+                            .insert([{ email: email }]);
+
+                        if (error) throw error;
+
+                        feedback.textContent = '🎉 You are on the list! We will be in touch soon.';
+                        feedback.classList.add('success');
+                        emailInput.value = '';
+                    } catch (err) {
+                        console.error('Waitlist error:', err);
+                        feedback.textContent = err.code === '23505'
+                            ? '✨ This email is already registered on the waitlist.'
+                            : 'Something went wrong. Please try again.';
+                        feedback.classList.add('error');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Join Waitlist';
+                    }
+                });
+            }
+
+            // --- Blurred Legal Modal Logic ---
+            const DOCS = {
+                featuresBtn: {
+                    title: 'Welcome to MiBubbl',
+                    html: `
+                        <p><em>Your thoughts, your moments, your bubble.</em></p>
+                        <p>MiBubbl is an intentional, adult (18+) social platform built for authentic expression, genuine connections, and creative freedom. We’ve stripped away the endless algorithmic noise, hidden view counts, and "black box" moderation to give you a clean, high-end space where you control your experience.</p>
+                        <h3>1. The Feed</h3>
+                        <ul>
+                            <li><strong>What it is:</strong> Your home base for everything happening in your bubble.</li>
+                            <li><strong>How it works:</strong> Completely chronological. No mysterious algorithms pushing old content or burying what you want to see. The only way to appear at the top is to stay active and keep your bubble fresh.</li>
+                        </ul>
+                        <h3>2. Thoughts</h3>
+                        <ul>
+                            <li><strong>What it is:</strong> Short-form, text-based updates—think quick notes, ideas, and real conversations with replies.</li>
+                            <li><strong>How it works:</strong> Clean, distraction-free text formatting that lets you share what's on your mind instantly without needing a full production.</li>
+                        </ul>
+                        <h3>3. Moments</h3>
+                        <ul>
+                            <li><strong>What it is:</strong> Visual stories and portrait media designed to capture your lifestyle, fashion, and creative expression.</li>
+                            <li><strong>How it works:</strong> Users have a base cap of 20 moments (or up to 50 with Bubbl+). When you swap out a slotted Moment for a new one, the replaced Moment is permanently deleted to keep your grid fresh, while all of its accumulated likes are preserved in your permanent profile total and your new Moment is pushed to the top of the chronological timeline. Moments are comment-free to keep visual browsing clean.</li>
+                        </ul>
+                        <h3>4. Snippets &amp; The Avatar Ring</h3>
+                        <ul>
+                            <li><strong>What it is:</strong> Quick, real-time status updates that let your community know what you’re up to right now.</li>
+                            <li><strong>How it works:</strong> When someone shares a snippet, their avatar lights up with our signature gradient ring in a rolling tray at the top of your feed.</li>
+                        </ul>
+                        <h3>5. Discover &amp; Interactive Hashtags</h3>
+                        <ul>
+                            <li><strong>What it is:</strong> Organic, non-algorithmic discovery powered by creator hashtags.</li>
+                            <li><strong>How it works:</strong> Clicking any #hashtag in a Thought or Moment opens the Discover tab filtered chronologically by that tag.</li>
+                        </ul>
+                        <h3>6. Bubbl+ (The Pro Experience)</h3>
+                        <p>Unlocks expanded limits (up to 50 active moments), custom link pills, ad-free browsing, and daily 24h Discover spotlight entry.</p>
+                        <h3>7–8. Intentional Space &amp; Transparent Moderation</h3>
+                        <p>Built for 18+ creators with zero secret shadowbans—any removed content comes with a clear notification explaining why.</p>
+                    `
+                },
+                guidelinesBtn: {
+                    title: 'MiBubbl Community Guidelines',
+                    html: `
+                        <p><em>Your thoughts, your moments, your bubble.</em></p>
+                        <h3>1. What’s Welcome Here</h3>
+                        <ul>
+                            <li><strong>Artistic &amp; Creative Expression:</strong> Photography, styling, alternative fashion, and artistic body expression.</li>
+                            <li><strong>Lifestyle &amp; Casual Content:</strong> Swimwear, bikinis, beachwear, fitness content, and everyday moments.</li>
+                            <li><strong>Open Conversation &amp; Healthy Debate:</strong> Real thoughts, moments, and snippets.</li>
+                        </ul>
+                        <h3>2. The Hard Lines</h3>
+                        <ul>
+                            <li><strong>Personal Attacks &amp; Bullying:</strong> Targeted harassment and bullying are prohibited.</li>
+                            <li><strong>Child Safety &amp; Zero Tolerance:</strong> Immediate permanent ban for any content or conduct involving minors.</li>
+                            <li><strong>Explicit Pornography &amp; Non-Consensual Media:</strong> Strictly prohibited.</li>
+                            <li><strong>Spam &amp; Copyright Infringement:</strong> Scams, bot spam, and unauthorized reuploads are prohibited.</li>
+                            <li><strong>Account Designations (Parody &amp; Business Accounts):</strong> Parody, fan, and business/brand accounts must use the appropriate profile account-type badge. Impersonation without clear Parody designation is prohibited.</li>
+                            <li><strong>Unsafe or Prohibited External Links:</strong> Links to malware, phishing scams, explicit adult sites, or illegal content are prohibited.</li>
+                        </ul>
+                        <h3>3–4. Transparency &amp; Enforcement</h3>
+                        <p>No secret shadowbans—removals include a direct notification explaining the reason.</p>
+                    `
+                },
+                tosBtn: {
+                    title: 'MiBubbl – Terms of Service',
+                    html: `
+                        <p><strong>Effective Date:</strong> November 1, 2026 | <strong>Website:</strong> mibubbl.com</p>
+                        <h3>1. Eligibility (18+)</h3>
+                        <p>You must be at least 18 years old to register or use MiBubbl.</p>
+                        <h3>2. Intellectual Property &amp; Slot Swapping</h3>
+                        <p>Creators keep 100% ownership of their Thoughts, Moments, and Snippets, and user content is never used for AI training. When you swap out a slotted Moment, the replaced Moment file is permanently deleted from active storage while aggregate like counts remain preserved on your profile.</p>
+                        <h3>3. Skin vs. Nudity Policy</h3>
+                        <p>Swimwear, lingerie, artistic skin-bearing photography, and fitness content are welcome; explicit pornography and illegal content are strictly prohibited.</p>
+                        <h3>8. Bubbl+ Subscriptions</h3>
+                        <p>Billed monthly via Stripe at £7.99 GBP / $9.99 USD (plus applicable taxes), with eligible new subscribers able to receive an introductory free trial period (such as 1 Month Free) as displayed at checkout.</p>
+                        <h3>11. Governing Law</h3>
+                        <p>Governed by the laws of England and Wales.</p>
+                    `
+                },
+                privacyBtn: {
+                    title: 'MiBubbl – Privacy Policy',
+                    html: `
+                        <p><strong>Effective Date:</strong> November 1, 2026 | <strong>Website:</strong> mibubbl.com</p>
+                        <h3>1. Information We Collect</h3>
+                        <p>We collect account details (including date of birth strictly for 18+ age verification), user-generated content (Thoughts, Moments, Snippets, and profile images), billing data via Stripe, and technical/usage logs.</p>
+                        <h3>3–4. Storage &amp; Third Parties</h3>
+                        <p>Protected under UK GDPR and hosted via Supabase and Vercel. Moments removed via slot swapping or deletion are purged immediately from active storage.</p>
+                        <h3>5 &amp; 8. Your Rights &amp; Contact</h3>
+                        <p>Contact <strong>support@mibubbl.com</strong> for privacy or data requests.</p>
+                    `
+                }
+            };
+
+            const legalModal = document.getElementById('legalModal');
+            const legalModalTitle = document.getElementById('legalModalTitle');
+            const legalModalBody = document.getElementById('legalModalBody');
+            const legalModalClose = document.getElementById('legalModalClose');
+
+            function openModal(key) {
+                const doc = DOCS[key];
+                if (!doc) return;
+                legalModalTitle.textContent = doc.title;
+                legalModalBody.innerHTML = doc.html;
+                legalModal.classList.add('open');
+            }
+
+            function closeModal() {
+                legalModal.classList.remove('open');
+            }
+
+            Object.keys(DOCS).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openModal(id);
+                    });
+                }
+            });
+
+            legalModalClose.addEventListener('click', closeModal);
+            legalModal.addEventListener('click', (e) => {
+                if (e.target === legalModal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && legalModal.classList.contains('open')) closeModal();
+            });
+        });
+    </script>
+</body>
+</html>
